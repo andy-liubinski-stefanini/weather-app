@@ -4,10 +4,10 @@ import { GlobalContext } from '../store/GlobalContext';
 import { useContext } from 'react';
 
 const CitySection = () => {
-  const { searchFieldVisible, weatherObj, datesArray } =
+  const { searchFieldVisible, weatherData, datesArray } =
     useContext(GlobalContext);
 
-  const cityCountryString = `${weatherObj?.city_name}, ${weatherObj?.country_code}`;
+  const cityCountryString = `${weatherData?.city_name}, ${weatherData?.country_code}`;
   const todayString =
     datesArray.length > 0
       ? `${datesArray[0]['formattedWeekday']}, ${datesArray[0]['formattedDate']}`
@@ -23,11 +23,11 @@ const CitySection = () => {
             searchFieldVisible && `hidden`
           }`}
         >
-          {weatherObj ? cityCountryString : `South Gulf of Mexico`}
+          {weatherData ? cityCountryString : `South Gulf of Mexico`}
         </h1>
         <Search />
         <h2 className="city_box--date text-3xl font-thin opacity-70">
-          {weatherObj ? todayString : `66 mln years ago`}
+          {weatherData ? todayString : `66 mln years ago`}
         </h2>
       </div>
     </section>

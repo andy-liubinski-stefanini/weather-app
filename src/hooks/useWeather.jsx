@@ -8,7 +8,7 @@ const useWeather = async location => {
     const data = await response.json();
     const dataObj = data.data[0];
 
-    const weatherObj = {
+    const weatherData = {
       city_name: dataObj.city_name,
       country_code: dataObj.country_code,
       temperatureC: dataObj.temp,
@@ -19,7 +19,7 @@ const useWeather = async location => {
       weather: dataObj.weather,
     };
 
-    return weatherObj;
+    return weatherData;
   } catch (error) {
     console.error(
       'Cannot fetch weather data. Better go look out of the window.'

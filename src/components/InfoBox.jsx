@@ -3,15 +3,15 @@ import { GlobalContext } from '../store/GlobalContext';
 import { useContext } from 'react';
 
 const InfoBox = () => {
-  const { weatherObj, celsius } = useContext(GlobalContext);
+  const { weatherData, celsius } = useContext(GlobalContext);
 
   // const weatherIcon = null;
   const temperature = celsius
-    ? weatherObj?.temperatureC
-    : weatherObj?.temperatureF;
-  const humidity = weatherObj?.humidity;
-  const airQuality = weatherObj?.air_quality;
-  const uvIndex = weatherObj?.uv_index;
+    ? weatherData?.temperatureC
+    : weatherData?.temperatureF;
+  const humidity = weatherData?.humidity;
+  const airQuality = weatherData?.air_quality;
+  const uvIndex = weatherData?.uv_index;
   // const explanation = null;
 
   return (
@@ -21,24 +21,24 @@ const InfoBox = () => {
           <WiMeteor />
         </div>
         <div className="informations-box--temps  px-4 flex flex-col justify-center items-center flex-grow text-5xl font-thin opacity-70">
-          {weatherObj ? `${temperature}°` : `999°`}
+          {weatherData ? `${temperature}°` : `999°`}
         </div>
         <div className="informations-box--air-qual air-qual px-4 flex flex-col justify-center items-center flex-grow ">
           <h3 className="air-qual--title">Humidity:</h3>
           <p className="air-qual--score text-3xl opacity-70">
-            {weatherObj ? `${humidity}%` : `10%`}
+            {weatherData ? `${humidity}%` : `10%`}
           </p>
         </div>
         <div className="informations-box--air-qual air-qual px-4 flex flex-col justify-center items-center flex-grow ">
           <h3 className="air-qual--title">Air quality:</h3>
           <p className="air-qual--score text-3xl opacity-70">
-            {weatherObj ? airQuality : `1/10`}
+            {weatherData ? airQuality : `1/10`}
           </p>
         </div>
         <div className="informations-box--uv-index uv-index px-4 flex flex-col justify-center items-center flex-grow ">
           <h3 className="uv-index--title">UV Index:</h3>
           <p className="uv-index--score text-3xl opacity-70">
-            {weatherObj ? uvIndex : `10/10`}
+            {weatherData ? uvIndex : `10/10`}
           </p>
         </div>
       </div>

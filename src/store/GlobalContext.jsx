@@ -10,7 +10,7 @@ const GlobalContext = createContext();
 function GlobalProvider({ children }) {
   const [celsius, setCelsius] = useState(true);
   const [datesArray, setDatesArray] = useState([]);
-  const [weatherObj, setWeatherObj] = useState();
+  const [weatherData, setWeatherData] = useState();
   const [searchFieldVisible, setSearchFieldVisible] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState({
     latitude: null,
@@ -46,7 +46,7 @@ function GlobalProvider({ children }) {
     const fetchWeather = async () => {
       if (selectedLocation.longitude) {
         const weather = await useWeather(selectedLocation);
-        setWeatherObj(weather);
+        setWeatherData(weather);
       }
     };
 
@@ -59,7 +59,7 @@ function GlobalProvider({ children }) {
         handleSearchButton: toggleSearchField,
         searchFieldVisible,
         handleGeolocate,
-        weatherObj: weatherObj,
+        weatherData: weatherData,
         datesArray: datesArray,
         handleUnitToggle: toggleCelsius,
         celsius,
