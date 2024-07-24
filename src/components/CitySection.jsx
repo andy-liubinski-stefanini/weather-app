@@ -4,7 +4,8 @@ import { GlobalContext } from '../store/GlobalContext';
 import { useContext } from 'react';
 
 const CitySection = () => {
-  const { searchField, weatherObj, datesArray } = useContext(GlobalContext);
+  const { searchFieldVisible, weatherObj, datesArray } =
+    useContext(GlobalContext);
 
   const cityCountryString = `${weatherObj?.city_name}, ${weatherObj?.country_code}`;
   const todayString =
@@ -19,7 +20,7 @@ const CitySection = () => {
       <div className="city--display_box city_box w-full h-full  flex flex-col justify-evenly items-center">
         <h1
           className={`city_box--city_name text-5xl transition-all duration-200 font-bold ${
-            searchField && `hidden`
+            searchFieldVisible && `hidden`
           }`}
         >
           {weatherObj ? cityCountryString : `South Gulf of Mexico`}

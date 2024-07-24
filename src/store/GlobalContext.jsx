@@ -10,7 +10,7 @@ const GlobalContext = createContext();
 function GlobalProvider({ children }) {
   const [datesArray, setDatesArray] = useState([]);
   const [weatherObj, setWeatherObj] = useState();
-  const [searchField, setSearchField] = useState(false);
+  const [searchFieldVisible, setSearchFieldVisible] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState({
     latitude: null,
     longitude: null,
@@ -23,7 +23,7 @@ function GlobalProvider({ children }) {
   }, []);
 
   const toggleSearchField = () => {
-    setSearchField(prevSearchField => !prevSearchField);
+    setSearchFieldVisible(prevSearchFieldVisible => !prevSearchFieldVisible);
   };
 
   const handleGeolocate = async () => {
@@ -59,7 +59,7 @@ function GlobalProvider({ children }) {
     <GlobalContext.Provider
       value={{
         handleSearchButton: toggleSearchField,
-        searchField,
+        searchFieldVisible,
         handleGeolocate,
         weatherObj: weatherObj,
         datesArray: datesArray,

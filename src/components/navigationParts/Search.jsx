@@ -3,12 +3,12 @@ import { GlobalContext } from '../../store/GlobalContext';
 import { useContext } from 'react';
 
 const Search = () => {
-  const { searchField } = useContext(GlobalContext);
+  const { searchFieldVisible } = useContext(GlobalContext);
 
   return (
     <div
       className={`city_box--search search-box transition-all duration-200 w-1/2 h-12  flex-row justify-evenly items-center ${
-        searchField ? 'flex' : 'hidden'
+        searchFieldVisible ? 'flex' : 'hidden'
       }  `}
     >
       <input

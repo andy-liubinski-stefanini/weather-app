@@ -1,4 +1,4 @@
-function listErrors(error) {
+function handleError(error) {
   switch (error.code) {
     case error.PERMISSION_DENIED:
       console.error('User denied the request for Geolocation.');
@@ -30,6 +30,6 @@ export function useCurrentLocation() {
       };
     })
     .catch(error => {
-      listErrors(error);
+      handleError(error);
     });
 }
