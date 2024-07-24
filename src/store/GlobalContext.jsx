@@ -14,7 +14,6 @@ function GlobalProvider({ children }) {
   const [selectedLocation, setSelectedLocation] = useState({
     latitude: null,
     longitude: null,
-    locationName: null,
   });
 
   useEffect(() => {
@@ -29,12 +28,7 @@ function GlobalProvider({ children }) {
   const handleGeolocate = async () => {
     try {
       const location = await useCurrentLocation();
-      setSelectedLocation(prevLocation => ({
-        ...prevLocation,
-        latitude: location.latitude,
-        longitude: location.longitude,
-      }));
-      console.log('Updated location:', {
+      setSelectedLocation({
         latitude: location.latitude,
         longitude: location.longitude,
       });
@@ -47,7 +41,6 @@ function GlobalProvider({ children }) {
     const fetchWeather = async () => {
       if (selectedLocation.longitude) {
         const weather = await useWeather(selectedLocation);
-        console.log(weather);
         setWeatherObj(weather);
       }
     };
