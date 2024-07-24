@@ -7,7 +7,12 @@ const CitySection = () => {
   const { searchField, weatherObj, datesArray } = useContext(GlobalContext);
 
   const cityCountryString = `${weatherObj?.city_name}, ${weatherObj?.country_code}`;
-  const todayString = null;
+  const todayString =
+    datesArray.length > 0
+      ? `${datesArray[0]['formattedWeekday']}, ${datesArray[0]['formattedDate']}`
+      : '';
+  console.log(todayString);
+
   return (
     <section className=" main--city city w-2/3  h-1/3 relative">
       <Navigation />
