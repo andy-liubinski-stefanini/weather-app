@@ -3,10 +3,12 @@
 import { createContext, useEffect, useState } from 'react';
 import { useCurrentLocation } from '../hooks/useCurrentLocation';
 import useWeather from '../hooks/useWeather';
+import useDate from '../hooks/useDate';
 
 const GlobalContext = createContext();
 
 function GlobalProvider({ children }) {
+  const [datesArray, setDatesArray] = useState([]);
   const [weatherObj, setWeatherObj] = useState();
   const [searchField, setSearchField] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState({
@@ -14,6 +16,11 @@ function GlobalProvider({ children }) {
     longitude: null,
     locationName: null,
   });
+
+  useEffect(() => {
+    const dates = useDate();
+    setDatesArray(dates);
+  }, []);
 
   const toggleSearchField = () => {
     setSearchField(prevSearchField => !prevSearchField);
@@ -47,7 +54,7 @@ function GlobalProvider({ children }) {
 
     fetchWeather();
   }, [selectedLocation]);
-
+  /* ------------------------------------------------------------------ */
   return (
     <GlobalContext.Provider
       value={{
@@ -55,6 +62,7 @@ function GlobalProvider({ children }) {
         searchField,
         handleGeolocate,
         weatherObj: weatherObj,
+        datesArray: datesArray,
       }}
     >
       {children}

@@ -4,10 +4,10 @@ import { GlobalContext } from '../store/GlobalContext';
 import { useContext } from 'react';
 
 const CitySection = () => {
-  const { searchField, weatherObj } = useContext(GlobalContext);
+  const { searchField, weatherObj, datesArray } = useContext(GlobalContext);
 
   const cityCountryString = `${weatherObj?.city_name}, ${weatherObj?.country_code}`;
-
+  const todayString = null;
   return (
     <section className=" main--city city w-2/3  h-1/3 relative">
       <Navigation />
@@ -21,7 +21,7 @@ const CitySection = () => {
         </h1>
         <Search />
         <h2 className="city_box--date text-3xl font-thin opacity-70">
-          66 mln years ago
+          {weatherObj ? todayString : `66 mln years ago`}
         </h2>
       </div>
     </section>
