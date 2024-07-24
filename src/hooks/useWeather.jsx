@@ -11,7 +11,8 @@ const useWeather = async location => {
     const weatherObj = {
       city_name: dataObj.city_name,
       country_code: dataObj.country_code,
-      temperature: dataObj.temp,
+      temperatureC: dataObj.temp,
+      temperatureF: (9 / 5) * Number(dataObj.temp) + 32,
       uv_index: dataObj.uv,
       air_quality: dataObj.aqi,
       humidity: dataObj.rh,

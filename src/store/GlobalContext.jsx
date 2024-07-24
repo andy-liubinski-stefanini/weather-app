@@ -8,6 +8,7 @@ import useDate from '../hooks/useDate';
 const GlobalContext = createContext();
 
 function GlobalProvider({ children }) {
+  const [celsius, setCelsius] = useState(true);
   const [datesArray, setDatesArray] = useState([]);
   const [weatherObj, setWeatherObj] = useState();
   const [searchFieldVisible, setSearchFieldVisible] = useState(false);
@@ -37,6 +38,10 @@ function GlobalProvider({ children }) {
     }
   };
 
+  const toggleCelsius = () => {
+    setCelsius(prevState => !prevState);
+  };
+
   useEffect(() => {
     const fetchWeather = async () => {
       if (selectedLocation.longitude) {
@@ -56,6 +61,8 @@ function GlobalProvider({ children }) {
         handleGeolocate,
         weatherObj: weatherObj,
         datesArray: datesArray,
+        handleUnitToggle: toggleCelsius,
+        celsius,
       }}
     >
       {children}
