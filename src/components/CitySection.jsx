@@ -4,7 +4,9 @@ import { GlobalContext } from '../store/GlobalContext';
 import { useContext } from 'react';
 
 const CitySection = () => {
-  const { searchField } = useContext(GlobalContext);
+  const { searchField, weatherObj } = useContext(GlobalContext);
+
+  const cityCountryString = `${weatherObj?.city_name}, ${weatherObj?.country_code}`;
 
   return (
     <section className=" main--city city w-2/3  h-1/3 relative">
@@ -15,7 +17,7 @@ const CitySection = () => {
             searchField && `hidden`
           }`}
         >
-          South Gulf of Mexico
+          {weatherObj ? cityCountryString : `South Gulf of Mexico`}
         </h1>
         <Search />
         <h2 className="city_box--date text-3xl font-thin opacity-70">
