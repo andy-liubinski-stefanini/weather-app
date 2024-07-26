@@ -6,17 +6,17 @@ const useWeather = async location => {
       `https://api.weatherbit.io/v2.0/current?lat=${location.latitude}&lon=${location.longitude}&key=${apikey}&include=minutely`
     );
     const data = await response.json();
-    const dataObj = data.data[0];
+    const currentWeatherData = data.data[0];
 
     const weatherData = {
-      city_name: dataObj.city_name,
-      country_code: dataObj.country_code,
-      temperatureC: dataObj.temp,
-      temperatureF: (9 / 5) * Number(dataObj.temp) + 32,
-      uv_index: dataObj.uv,
-      air_quality: dataObj.aqi,
-      humidity: dataObj.rh,
-      weather: dataObj.weather,
+      cityName: currentWeatherData.city_name,
+      countryCode: currentWeatherData.country_code,
+      temperatureC: currentWeatherData.temp,
+      temperatureF: (9 / 5) * Number(currentWeatherData.temp) + 32,
+      uvIndex: currentWeatherData.uv,
+      airQuality: currentWeatherData.aqi,
+      humidity: currentWeatherData.rh,
+      weather: currentWeatherData.weather,
     };
 
     return weatherData;

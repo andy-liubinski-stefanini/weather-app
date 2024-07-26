@@ -1,13 +1,13 @@
 import Navigation from './navigationParts/Navigation';
 import Search from './navigationParts/Search';
-import { GlobalContext } from '../store/GlobalContext';
+import { AppContext } from '../store/AppContext';
 import { useContext } from 'react';
 
 const CitySection = () => {
   const { searchFieldVisible, weatherData, datesArray } =
-    useContext(GlobalContext);
+    useContext(AppContext);
 
-  const cityCountryString = `${weatherData?.city_name}, ${weatherData?.country_code}`;
+  const cityCountryString = `${weatherData?.cityName}, ${weatherData?.countryCode}`;
   const todayString =
     datesArray.length > 0
       ? `${datesArray[0]['formattedWeekday']}, ${datesArray[0]['formattedDate']}`

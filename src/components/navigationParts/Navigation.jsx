@@ -1,10 +1,10 @@
 import { CiLocationOn, CiMap } from 'react-icons/ci';
 import { useContext } from 'react';
-import { GlobalContext } from '../../store/GlobalContext';
+import { AppContext } from '../../store/AppContext';
 
 const Navigation = () => {
   const { handleSearchButton, handleGeolocate, handleUnitToggle, celsius } =
-    useContext(GlobalContext);
+    useContext(AppContext);
 
   return (
     <nav className="city--navigation_box navigation absolute h-full w-16 flex flex-col justify-evenly items-center">

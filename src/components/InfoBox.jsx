@@ -1,17 +1,17 @@
 import { WiMeteor } from 'react-icons/wi';
-import { GlobalContext } from '../store/GlobalContext';
+import { AppContext } from '../store/AppContext';
 import { useContext } from 'react';
 
 const InfoBox = () => {
-  const { weatherData, celsius } = useContext(GlobalContext);
+  const { weatherData, celsius } = useContext(AppContext);
 
   // const weatherIcon = null;
   const temperature = celsius
     ? weatherData?.temperatureC
     : weatherData?.temperatureF;
   const humidity = weatherData?.humidity;
-  const airQuality = weatherData?.air_quality;
-  const uvIndex = weatherData?.uv_index;
+  const airQuality = weatherData?.airQuality;
+  const uvIndex = weatherData?.uvIndex;
   // const explanation = null;
 
   return (

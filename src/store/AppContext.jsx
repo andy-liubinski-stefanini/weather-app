@@ -5,7 +5,7 @@ import { useCurrentLocation } from '../hooks/useCurrentLocation';
 import useWeather from '../hooks/useWeather';
 import useDate from '../hooks/useDate';
 
-const GlobalContext = createContext();
+const AppContext = createContext();
 
 function GlobalProvider({ children }) {
   const [celsius, setCelsius] = useState(true);
@@ -54,20 +54,20 @@ function GlobalProvider({ children }) {
   }, [selectedLocation]);
   /* ------------------------------------------------------------------ */
   return (
-    <GlobalContext.Provider
+    <AppContext.Provider
       value={{
         handleSearchButton: toggleSearchField,
         searchFieldVisible,
         handleGeolocate,
-        weatherData: weatherData,
-        datesArray: datesArray,
+        weatherData,
+        datesArray,
         handleUnitToggle: toggleCelsius,
         celsius,
       }}
     >
       {children}
-    </GlobalContext.Provider>
+    </AppContext.Provider>
   );
 }
 
-export { GlobalContext, GlobalProvider };
+export { AppContext, GlobalProvider };

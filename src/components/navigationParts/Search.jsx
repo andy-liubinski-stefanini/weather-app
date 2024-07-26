@@ -1,9 +1,9 @@
 import { CiSearch } from 'react-icons/ci';
-import { GlobalContext } from '../../store/GlobalContext';
+import { AppContext } from '../../store/AppContext';
 import { useContext } from 'react';
 
 const Search = () => {
-  const { searchFieldVisible } = useContext(GlobalContext);
+  const { searchFieldVisible } = useContext(AppContext);
 
   return (
     <div
