@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from 'react';
 import { useCurrentLocation } from '../hooks/useCurrentLocation';
-import useWeather from '../hooks/useWeather';
+import assembleAllWeather from '../weatherFunctions/assembleAllWeather';
 import useDate from '../hooks/useDate';
 
 const AppContext = createContext();
@@ -37,6 +37,9 @@ function GlobalProvider({ children }) {
       console.error('Error getting current location:', error);
     }
   };
+  useEffect(() => {
+    handleGeolocate();
+  }, []);
 
   const toggleCelsius = () => {
     setCelsius(prevState => !prevState);
@@ -45,12 +48,13 @@ function GlobalProvider({ children }) {
   useEffect(() => {
     const fetchWeather = async () => {
       if (selectedLocation.longitude) {
-        const weather = await useWeather(selectedLocation);
+        const weather = await assembleAllWeather(selectedLocation);
         setWeatherData(weather);
       }
     };
 
     fetchWeather();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLocation]);
   /* ------------------------------------------------------------------ */
   return (

@@ -7,12 +7,13 @@ const CitySection = () => {
   const { searchFieldVisible, weatherData, datesArray } =
     useContext(AppContext);
 
+  weatherData ? console.log(weatherData[0]) : console.log('No weather data');
+
   const cityCountryString = `${weatherData?.cityName}, ${weatherData?.countryCode}`;
   const todayString =
     datesArray.length > 0
-      ? `${datesArray[0]['formattedWeekday']}, ${datesArray[0]['formattedDate']}`
+      ? `${datesArray[1]['formattedWeekday']}, ${datesArray[1]['formattedDate']}`
       : '';
-  console.log(todayString);
 
   return (
     <section className=" main--city city w-2/3  h-1/3 relative">
@@ -27,7 +28,7 @@ const CitySection = () => {
         </h1>
         <Search />
         <h2 className="city_box--date text-3xl font-thin opacity-70">
-          {weatherData ? todayString : `66 mln years ago`}
+          {todayString}
         </h2>
       </div>
     </section>
