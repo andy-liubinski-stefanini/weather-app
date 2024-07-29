@@ -7,9 +7,10 @@ const CitySection = () => {
   const { searchFieldVisible, weatherData, datesArray } =
     useContext(AppContext);
 
-  weatherData ? console.log(weatherData[0]) : console.log('No weather data');
-
-  const cityCountryString = `${weatherData?.cityName}, ${weatherData?.countryCode}`;
+  const weatherObject = weatherData && weatherData[0] ? weatherData[0] : null;
+  const cityCountryString = weatherObject
+    ? `${weatherObject.cityName}, ${weatherObject.countryCode}`
+    : 'Loading...';
   const todayString =
     datesArray.length > 0
       ? `${datesArray[1]['formattedWeekday']}, ${datesArray[1]['formattedDate']}`

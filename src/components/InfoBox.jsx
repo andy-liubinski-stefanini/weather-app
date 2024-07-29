@@ -5,13 +5,16 @@ import { useContext } from 'react';
 const InfoBox = () => {
   const { weatherData, celsius } = useContext(AppContext);
 
+  const weatherObject = weatherData && weatherData[0] ? weatherData[0] : null;
+
   // const weatherIcon = null;
-  const temperature = celsius
-    ? weatherData?.temperatureC
-    : weatherData?.temperatureF;
-  const humidity = weatherData?.humidity;
-  const airQuality = weatherData?.airQuality;
-  const uvIndex = weatherData?.uvIndex;
+  const temperatureC = weatherObject ? weatherObject.temperatureC : null;
+  const temperatureF = temperatureC
+    ? Math.floor((9 / 5) * Number(temperatureC) + 32)
+    : null;
+  const humidity = weatherObject ? weatherObject.humidity : 'N/A';
+  const airQuality = weatherObject ? weatherObject.airQuality : 'N/A';
+  const uvIndex = weatherObject ? weatherObject.uvIndex : 'N/A';
   // const explanation = null;
 
   return (
@@ -21,7 +24,7 @@ const InfoBox = () => {
           <WiMeteor />
         </div>
         <div className="informations-box--temps  px-4 flex flex-col justify-center items-center flex-grow text-5xl font-thin opacity-70">
-          {weatherData ? `${temperature}°` : `999°`}
+          {weatherData ? `${celsius ? temperatureC : temperatureF}°` : `999°`}
         </div>
         <div className="informations-box--air-qual air-qual px-4 flex flex-col justify-center items-center flex-grow ">
           <h3 className="air-qual--title">Humidity:</h3>

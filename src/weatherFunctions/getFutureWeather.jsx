@@ -6,14 +6,12 @@ const getFutureWeather = async location => {
   try {
     const data = await fetchData(apiForecastWeather);
     const dataArray = data.data;
-    return dataArray.splice(5).map(day => {
-      ({
-        dateOfWeather: day.datetime,
-        maxTempC: day.max_temp,
-        minTempC: day.min_temp,
-        description: day.weather.description,
-      });
-    });
+    return dataArray.slice(0, 5).map(day => ({
+      dateOfWeather: day.datetime,
+      maxTempC: day.max_temp,
+      minTempC: day.min_temp,
+      description: day.weather.description,
+    }));
   } catch (error) {
     console.error('Cannot fetch future weather: ', error);
     throw error;

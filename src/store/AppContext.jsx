@@ -18,6 +18,10 @@ function GlobalProvider({ children }) {
   });
 
   useEffect(() => {
+    console.log(weatherData);
+  }, [weatherData]);
+
+  useEffect(() => {
     const dates = useDate();
     setDatesArray(dates);
   }, []);
@@ -37,9 +41,6 @@ function GlobalProvider({ children }) {
       console.error('Error getting current location:', error);
     }
   };
-  useEffect(() => {
-    handleGeolocate();
-  }, []);
 
   const toggleCelsius = () => {
     setCelsius(prevState => !prevState);
