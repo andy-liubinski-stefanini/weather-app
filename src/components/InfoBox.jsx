@@ -1,6 +1,7 @@
 import { WiMeteor } from 'react-icons/wi';
 import { AppContext } from '../store/AppContext';
 import { useContext } from 'react';
+import TextWeatherExplanation from './TextWeatherExplanation';
 
 const InfoBox = () => {
   const { weatherData, celsius } = useContext(AppContext);
@@ -15,7 +16,6 @@ const InfoBox = () => {
   const humidity = weatherObject ? weatherObject.humidity : 'N/A';
   const airQuality = weatherObject ? weatherObject.airQuality : 'N/A';
   const uvIndex = weatherObject ? weatherObject.uvIndex : 'N/A';
-  // const explanation = null;
 
   return (
     <section className="main--info-box info-box flex flex-col justify-between items-center w-2/3 h-1/3">
@@ -46,7 +46,9 @@ const InfoBox = () => {
         </div>
       </div>
       <div className="info-box--explanation explanation w-full flex flex-row justify-center items-center flex-grow pb-1">
-        <p className="explanation-text">{`Dinos ain't getting through this!`}</p>
+        <p className="explanation-text">
+          <TextWeatherExplanation />
+        </p>
       </div>
     </section>
   );

@@ -13,6 +13,7 @@ const getTodayWeather = async location => {
       uvIndex: data.data[0].uv,
       airQuality: data.data[0].aqi,
       humidity: data.data[0].rh,
+      windSpeed: data.data[0].wind_spd,
       weather: data.data[0].weather,
     };
   } catch (error) {
