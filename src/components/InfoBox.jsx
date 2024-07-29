@@ -1,4 +1,3 @@
-import { WiMeteor } from 'react-icons/wi';
 import { AppContext } from '../store/AppContext';
 import { useContext } from 'react';
 import TextWeatherExplanation from './TextWeatherExplanation';
@@ -16,12 +15,15 @@ const InfoBox = () => {
   const humidity = weatherObject ? weatherObject.humidity : 'N/A';
   const airQuality = weatherObject ? weatherObject.airQuality : 'N/A';
   const uvIndex = weatherObject ? weatherObject.uvIndex : 'N/A';
+  const iconLink = weatherObject
+    ? `https://cdn.weatherbit.io/static/img/icons/${weatherObject.icon}.png`
+    : null;
 
   return (
     <section className="main--info-box info-box flex flex-col justify-between items-center w-2/3 h-1/3">
       <div className="info-box--informations-box informations-box grid grid-cols-5 grid-rows-1 gap-0 w-full ">
         <div className="informations-box--icon  px-4 flex flex-row justify-end items-center flex-grow text-7xl">
-          <WiMeteor />
+          <img className="w-20 h-20" src={iconLink} alt="Weather icon" />
         </div>
         <div className="informations-box--temps  px-4 flex flex-col justify-center items-center flex-grow text-5xl font-thin opacity-70">
           {weatherData ? `${celsius ? temperatureC : temperatureF}°` : `999°`}

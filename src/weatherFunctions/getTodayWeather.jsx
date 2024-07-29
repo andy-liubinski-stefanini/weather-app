@@ -14,7 +14,8 @@ const getTodayWeather = async location => {
       airQuality: data.data[0].aqi,
       humidity: data.data[0].rh,
       windSpeed: data.data[0].wind_spd,
-      weather: data.data[0].weather,
+      description: data.data[0].weather.description,
+      icon: data.data[0].weather.icon,
     };
   } catch (error) {
     console.error("Cannot fetch today's weather: ", error);

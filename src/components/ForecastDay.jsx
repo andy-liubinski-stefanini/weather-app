@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { WiDaySunny } from 'react-icons/wi';
 import { AppContext } from '../store/AppContext';
 import { useContext } from 'react';
 
@@ -17,14 +16,17 @@ const ForecastDay = ({ day, formattedDate }) => {
     ? Math.floor((9 / 5) * Number(minTempC) + 32)
     : null;
 
-  console.log(formattedDate.formattedDate);
+  const iconLink = day
+    ? `https://cdn.weatherbit.io/static/img/icons/${day.icon}.png`
+    : null;
+
   return (
     <div className="forecast-box--day day-forecast w-1/5 h-full flex flex-col justify-between items-center">
       <div className="day-forecast--day font-light text-lg">
         {day ? `${formattedDate.formattedDate}` : `Loading...`}
       </div>
       <div className="day-forecast--icon font-bold text-6xl">
-        <WiDaySunny />
+        <img className="w-16 h-16" src={iconLink} alt="Weather icon" />
       </div>
       <div className="day-forecast--description">
         {day ? `${day.description}` : `Loading...`}

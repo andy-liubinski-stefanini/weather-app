@@ -11,6 +11,7 @@ const getFutureWeather = async location => {
       maxTempC: day.max_temp,
       minTempC: day.min_temp,
       description: day.weather.description,
+      icon: day.weather.icon,
     }));
   } catch (error) {
     console.error('Cannot fetch future weather: ', error);

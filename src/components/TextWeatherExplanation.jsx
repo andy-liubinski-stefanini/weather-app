@@ -9,7 +9,7 @@ const TextWeatherExplanation = () => {
   const temperatureF = temperatureC
     ? Math.floor((9 / 5) * Number(temperatureC) + 32)
     : null;
-  const description = weatherObject ? weatherObject.weather.description : null;
+  const description = weatherObject ? weatherObject.description : null;
   const humidity = weatherObject ? weatherObject.humidity : null;
   const windSpeed = weatherObject ? weatherObject.windSpeed : null;
 
