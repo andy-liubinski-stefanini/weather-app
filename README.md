@@ -1,3 +1,7 @@
+# Vercel deployment
+
+https://weather-app-pi-self-65.vercel.app/
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

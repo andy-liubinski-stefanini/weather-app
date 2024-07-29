@@ -15,11 +15,8 @@ function GlobalProvider({ children }) {
   const [selectedLocation, setSelectedLocation] = useState({
     latitude: null,
     longitude: null,
+    locationName: null,
   });
-
-  useEffect(() => {
-    console.log(weatherData);
-  }, [weatherData]);
 
   useEffect(() => {
     const dates = useDate();
@@ -63,6 +60,7 @@ function GlobalProvider({ children }) {
       value={{
         handleSearchButton: toggleSearchField,
         searchFieldVisible,
+        setSearchFieldVisible,
         handleGeolocate,
         weatherData,
         datesArray,
