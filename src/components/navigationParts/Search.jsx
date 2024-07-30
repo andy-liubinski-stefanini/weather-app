@@ -1,25 +1,42 @@
 import { CiSearch } from 'react-icons/ci';
 import { AppContext } from '../../store/AppContext';
-import { useContext, useRef } from 'react';
+import { useEffect, useContext, useRef, useState } from 'react';
 
 const Search = () => {
   const { searchFieldVisible, setSearchFieldVisible, setSelectedLocation } =
     useContext(AppContext);
-
   const inputRef = useRef(null);
+  const [searchHistory, setSearchHistory] = useState([]);
+
+  useEffect(() => {
+    // Load search history from local storage when the component mounts
+    const storedHistory = localStorage.getItem('searchHistory');
+    if (storedHistory) {
+      setSearchHistory(JSON.parse(storedHistory));
+    }
+  }, []);
 
   function handleSearchSubmit(evt) {
     evt.preventDefault();
     const inputValue = inputRef.current.value;
+    const newHistory = [inputValue, ...searchHistory].slice(0, 5);
+    setSearchHistory(newHistory);
+    localStorage.setItem('searchHistory', JSON.stringify(newHistory));
     inputRef.current.value = '';
     setSelectedLocation({ locationName: inputValue });
-    console.log(inputRef.current.value);
     setSearchFieldVisible(prevState => !prevState);
   }
+
+  useEffect(() => {
+    if (searchFieldVisible) {
+      inputRef.current.focus();
+    }
+  }, [searchFieldVisible]);
 
   return (
     <form
       onSubmit={handleSearchSubmit}
+      autoFocus
       className={`city_box--search search-box transition-all duration-200 w-1/2 h-12  flex-row justify-evenly items-center ${
         searchFieldVisible ? 'flex' : 'hidden'
       }  `}
