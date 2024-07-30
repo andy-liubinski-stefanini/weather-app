@@ -15,7 +15,6 @@ function GlobalProvider({ children }) {
   const [selectedLocation, setSelectedLocation] = useState({
     latitude: null,
     longitude: null,
-    locationName: null,
   });
 
   useEffect(() => {
@@ -45,7 +44,7 @@ function GlobalProvider({ children }) {
 
   useEffect(() => {
     const fetchWeather = async () => {
-      if (selectedLocation.longitude) {
+      if (selectedLocation.longitude || selectedLocation.locationName) {
         const weather = await assembleAllWeather(selectedLocation);
         setWeatherData(weather);
       }
@@ -66,6 +65,7 @@ function GlobalProvider({ children }) {
         datesArray,
         handleUnitToggle: toggleCelsius,
         celsius,
+        setSelectedLocation,
       }}
     >
       {children}

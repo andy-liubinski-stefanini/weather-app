@@ -2,9 +2,16 @@ import fetchData from '../services/fetcher';
 const apikey = import.meta.env.VITE_API_KEY;
 
 const getTodayWeather = async location => {
-  const apiCurrentWeather = `https://api.weatherbit.io/v2.0/current?lat=${location.latitude}&lon=${location.longitude}&key=${apikey}&include=minutely`;
+  let endpoint = null;
+  if (location.latitude && location.longitude) {
+    endpoint = `https://api.weatherbit.io/v2.0/current?lat=${location.latitude}&lon=${location.longitude}&key=${apikey}&include=minutely`;
+  }
+  if (location.locationName) {
+    endpoint = `https://api.weatherbit.io/v2.0/current?city=${location.locationName}&key=${apikey}&include=minutely`;
+  }
+
   try {
-    const data = await fetchData(apiCurrentWeather);
+    const data = await fetchData(endpoint);
     return {
       cityName: data.data[0].city_name,
       countryCode: data.data[0].country_code,

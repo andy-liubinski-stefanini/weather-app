@@ -2,9 +2,15 @@ import fetchData from '../services/fetcher';
 const apikey = import.meta.env.VITE_API_KEY;
 
 const getFutureWeather = async location => {
-  const apiForecastWeather = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${location.latitude}&lon=${location.longitude}&key=${apikey}`;
+  let endpoint = null;
+  if (location.latitude && location.longitude) {
+    endpoint = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${location.latitude}&lon=${location.longitude}&key=${apikey}`;
+  }
+  if (location.locationName) {
+    endpoint = `https://api.weatherbit.io/v2.0/forecast/daily?city=${location.locationName}&key=${apikey}`;
+  }
   try {
-    const data = await fetchData(apiForecastWeather);
+    const data = await fetchData(endpoint);
     const dataArray = data.data;
     return dataArray.slice(0, 5).map(day => ({
       dateOfWeather: day.datetime,

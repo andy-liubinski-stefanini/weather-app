@@ -1,12 +1,19 @@
 import { CiSearch } from 'react-icons/ci';
 import { AppContext } from '../../store/AppContext';
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 
 const Search = () => {
-  const { searchFieldVisible, setSearchFieldVisible } = useContext(AppContext);
+  const { searchFieldVisible, setSearchFieldVisible, setSelectedLocation } =
+    useContext(AppContext);
+
+  const inputRef = useRef(null);
 
   function handleSearchSubmit(evt) {
     evt.preventDefault();
+    const inputValue = inputRef.current.value;
+    inputRef.current.value = '';
+    setSelectedLocation({ locationName: inputValue });
+    console.log(inputRef.current.value);
     setSearchFieldVisible(prevState => !prevState);
   }
 
@@ -18,6 +25,7 @@ const Search = () => {
       }  `}
     >
       <input
+        ref={inputRef}
         placeholder="Enter a city"
         className="search-box--input rounded active:border active:border-slate-600 active:outline-none h-10 w-2/3 p-1 placeholder:opacity-50 text-black"
       ></input>
