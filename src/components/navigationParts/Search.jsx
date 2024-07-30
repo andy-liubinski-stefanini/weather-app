@@ -42,10 +42,16 @@ const Search = () => {
       }  `}
     >
       <input
+        list="search-history"
         ref={inputRef}
         placeholder="Enter a city"
         className="search-box--input rounded active:border active:border-slate-600 active:outline-none h-10 w-2/3 p-1 placeholder:opacity-50 text-black"
       ></input>
+      <datalist id="search-history" className="mt-2 p-1">
+        {searchHistory.map(place => (
+          <option key={place} value={place} className="p-1"></option>
+        ))}
+      </datalist>
       <button
         type="submit"
         className="search-box--button border rounded-full h-12 w-12 flex justify-center items-center hover:border-2 font-thin text-xl"
