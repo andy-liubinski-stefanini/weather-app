@@ -28,7 +28,7 @@ const ForecastDay = ({ day, formattedDate }) => {
       <div className="day-forecast--icon font-bold text-6xl">
         <img className="w-16 h-16" src={iconLink} alt="Weather icon" />
       </div>
-      <div className="day-forecast--description">
+      <div className="day-forecast--description text-sm">
         {day ? `${day.description}` : `Loading...`}
       </div>
       <div className="day-forecast--temps pb-4">

@@ -13,7 +13,7 @@ const CitySection = () => {
     : 'Loading...';
   const todayString =
     datesArray.length > 0
-      ? `${datesArray[1]['formattedWeekday']}, ${datesArray[1]['formattedDate']}`
+      ? `${datesArray[0]['formattedWeekday']}, ${datesArray[0]['formattedDate']}`
       : '';
 
   return (
@@ -25,7 +25,7 @@ const CitySection = () => {
             searchFieldVisible && `hidden`
           }`}
         >
-          {weatherData ? cityCountryString : `South Gulf of Mexico`}
+          {weatherData ? cityCountryString : `City, World`}
         </h1>
         <Search />
         <h2 className="city_box--date text-3xl font-thin opacity-70">
