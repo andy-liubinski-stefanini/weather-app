@@ -29,13 +29,16 @@ const TextWeatherExplanation = () => {
     wear = 'a heavy jacket';
   }
 
+  const welcomeText =
+    'Please press geolocate button to see the local weather or map button to see weather for any city in the world.';
+
   const text = `It is currently ${
     celsius ? temperatureC : temperatureF
   }° with ${description ? description.toLowerCase() : `N/A`}, humidity of ${
     humidity ? humidity : `N/A`
   }% and wind speed of ${windSpeed} m/s. Wear ${wear}.`;
 
-  return text;
+  return <p className="explanation-text">{weatherData ? text : welcomeText}</p>;
 };
 
 export default TextWeatherExplanation;
