@@ -1,6 +1,6 @@
 import { CiSearch } from 'react-icons/ci';
 import { CiCircleRemove } from 'react-icons/ci';
-import { AppContext } from '../../store/AppContext';
+import { AppContext } from '../store/AppContext';
 import { useEffect, useContext, useRef, useState } from 'react';
 
 const Search = () => {

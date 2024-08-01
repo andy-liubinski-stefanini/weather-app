@@ -1,5 +1,5 @@
-import Navigation from './navigationParts/Navigation';
-import Search from './navigationParts/Search';
+import Navigation from './Navigation';
+import Search from './Search';
 import { AppContext } from '../store/AppContext';
 import { useContext } from 'react';
 

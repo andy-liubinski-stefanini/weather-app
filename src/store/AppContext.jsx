@@ -1,59 +1,34 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/prop-types */
-import { createContext, useEffect, useState } from 'react';
-import { getCurrentLocation } from '../utils/geolocationUtil';
-import assembleAllWeather from '../weatherFunctions/assembleAllWeather';
-import useDate from '../utils/dateUtil';
+import { createContext, useState, useEffect } from 'react';
+import useWeatherData from '../hooks/useWeatherData';
+import useDates from '../hooks/useDates';
+import useGeolocation from '../hooks/useGeolocation';
 
 const AppContext = createContext();
 
 function GlobalProvider({ children }) {
   const [celsius, setCelsius] = useState(true);
-  const [datesArray, setDatesArray] = useState([]);
-  const [weatherData, setWeatherData] = useState();
   const [searchFieldVisible, setSearchFieldVisible] = useState(false);
-  const [selectedLocation, setSelectedLocation] = useState({
-    latitude: null,
-    longitude: null,
-  });
+  const { datesArray } = useDates();
+  const { weatherData, fetchWeather } = useWeatherData();
+  const { selectedLocation, handleGeolocate, setSelectedLocation } =
+    useGeolocation();
 
   useEffect(() => {
-    const dates = useDate();
-    setDatesArray(dates);
-  }, []);
+    if (selectedLocation.longitude || selectedLocation.locationName) {
+      fetchWeather(selectedLocation);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedLocation]);
 
   const toggleSearchField = () => {
     setSearchFieldVisible(prevSearchFieldVisible => !prevSearchFieldVisible);
-  };
-
-  const handleGeolocate = async () => {
-    try {
-      const location = await getCurrentLocation();
-      setSelectedLocation({
-        latitude: location.latitude,
-        longitude: location.longitude,
-      });
-    } catch (error) {
-      console.error('Error getting current location:', error);
-    }
   };
 
   const toggleCelsius = () => {
     setCelsius(prevState => !prevState);
   };
 
-  useEffect(() => {
-    const fetchWeather = async () => {
-      if (selectedLocation.longitude || selectedLocation.locationName) {
-        const weather = await assembleAllWeather(selectedLocation);
-        setWeatherData(weather);
-      }
-    };
-
-    fetchWeather();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedLocation]);
-  /* ------------------------------------------------------------------ */
   return (
     <AppContext.Provider
       value={{
