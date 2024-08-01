@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from 'react';
-import { useCurrentLocation } from '../utils/geolocationUtil';
+import { getCurrentLocation } from '../utils/geolocationUtil';
 import assembleAllWeather from '../weatherFunctions/assembleAllWeather';
 import useDate from '../utils/dateUtil';
 
@@ -28,7 +28,7 @@ function GlobalProvider({ children }) {
 
   const handleGeolocate = async () => {
     try {
-      const location = await useCurrentLocation();
+      const location = await getCurrentLocation();
       setSelectedLocation({
         latitude: location.latitude,
         longitude: location.longitude,
