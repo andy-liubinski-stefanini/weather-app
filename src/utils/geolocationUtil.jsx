@@ -15,7 +15,7 @@ function handleError(error) {
   }
 }
 
-export function useCurrentLocation() {
+export function getCurrentLocation() {
   return new Promise((resolve, reject) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(resolve, reject);

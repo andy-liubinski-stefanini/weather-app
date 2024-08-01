@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from 'react';
-import { useCurrentLocation } from '../hooks/useCurrentLocation';
+import { useCurrentLocation } from '../utils/geolocationUtil';
 import assembleAllWeather from '../weatherFunctions/assembleAllWeather';
-import useDate from '../hooks/useDate';
+import useDate from '../utils/dateUtil';
 
 const AppContext = createContext();
 

@@ -9,7 +9,7 @@ const createOneDay = days => {
   };
 };
 
-const useDate = () => {
+const generateDates = () => {
   const arrayOfDays = [];
   for (let i = 0; i < 5; i++) {
     arrayOfDays.push(createOneDay(i));
@@ -17,4 +17,4 @@ const useDate = () => {
   return arrayOfDays;
 };
 
-export default useDate;
+export default generateDates;
