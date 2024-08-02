@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import assembleAllWeather from '../weatherFunctions/assembleAllWeather';
+import assembleAllWeather from '../functions/weatherService';
 
-const useWeatherData = () => {
+export const useWeatherData = () => {
   const [weatherData, setWeatherData] = useState();
 
   const fetchWeather = async location => {
@@ -13,5 +13,3 @@ const useWeatherData = () => {
 
   return { weatherData, fetchWeather };
 };
-
-export default useWeatherData;

@@ -1,7 +1,7 @@
-import getTodayWeather from './getTodayWeather';
-import getFutureWeather from './getFutureWeather';
+import { getTodayWeather } from './getTodayWeather';
+import { getFutureWeather } from './getFutureWeather';
 
-const assembleAllWeather = async location => {
+export const assembleAllWeather = async location => {
   try {
     const todayWeather = await getTodayWeather(location);
     const forecastWeather = await getFutureWeather(location);
@@ -14,5 +14,3 @@ const assembleAllWeather = async location => {
     throw error;
   }
 };
-
-export default assembleAllWeather;

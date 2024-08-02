@@ -1,17 +1,17 @@
-import Navigation from './Navigation';
-import Search from './Search';
+import { Navigation } from './Navigation';
+import { Search } from './Search';
 import { AppContext } from '../store/AppContext';
 import { useContext } from 'react';
 
-const CitySection = () => {
+export const CitySection = () => {
   const { searchFieldVisible, weatherData, datesArray } =
     useContext(AppContext);
 
-  const weatherObject = weatherData && weatherData[0] ? weatherData[0] : null;
-  const cityCountryString = weatherObject
-    ? `${weatherObject.cityName}, ${weatherObject.countryCode}`
+  const weather = weatherData && weatherData[0] ? weatherData[0] : null;
+  const cityCountry = weather
+    ? `${weather.cityName}, ${weather.countryCode}`
     : 'Loading...';
-  const todayString =
+  const today =
     datesArray.length > 0
       ? `${datesArray[0]['formattedWeekday']}, ${datesArray[0]['formattedDate']}`
       : '';
@@ -25,15 +25,13 @@ const CitySection = () => {
             searchFieldVisible && `hidden`
           }`}
         >
-          {weatherData ? cityCountryString : `City, World`}
+          {weatherData ? cityCountry : `City, World`}
         </h1>
         <Search />
         <h2 className="city_box--date text-3xl font-thin opacity-70">
-          {todayString}
+          {today}
         </h2>
       </div>
     </section>
   );
 };
-
-export default CitySection;

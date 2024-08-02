@@ -9,12 +9,10 @@ const createOneDay = days => {
   };
 };
 
-const generateDates = () => {
+export const generateDates = () => {
   const arrayOfDays = [];
   for (let i = 0; i < 5; i++) {
     arrayOfDays.push(createOneDay(i));
   }
   return arrayOfDays;
 };
-
-export default generateDates;

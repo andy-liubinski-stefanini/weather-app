@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import getCurrentLocation from '../utils/geolocationUtil';
 
-const useGeolocation = () => {
+export const useGeolocation = () => {
   const [selectedLocation, setSelectedLocation] = useState({
     latitude: null,
     longitude: null,
@@ -21,5 +21,3 @@ const useGeolocation = () => {
 
   return { selectedLocation, handleGeolocate, setSelectedLocation };
 };
-
-export default useGeolocation;

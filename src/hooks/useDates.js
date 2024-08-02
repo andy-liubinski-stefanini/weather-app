@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import generateFutureDates from '../utils/dateUtil';
 
-const useDates = () => {
+export const useDates = () => {
   const [datesArray, setDatesArray] = useState([]);
 
   useEffect(() => {
@@ -11,5 +11,3 @@ const useDates = () => {
 
   return { datesArray };
 };
-
-export default useDates;

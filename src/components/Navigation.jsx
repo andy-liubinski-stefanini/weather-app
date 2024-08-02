@@ -2,7 +2,7 @@ import { CiLocationOn, CiMap } from 'react-icons/ci';
 import { useContext } from 'react';
 import { AppContext } from '../store/AppContext';
 
-const Navigation = () => {
+export const Navigation = () => {
   const { handleSearchButton, handleGeolocate, handleUnitToggle, celsius } =
     useContext(AppContext);
 
@@ -29,5 +29,3 @@ const Navigation = () => {
     </nav>
   );
 };
-
-export default Navigation;

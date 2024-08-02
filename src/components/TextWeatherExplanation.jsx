@@ -1,17 +1,17 @@
 import { AppContext } from '../store/AppContext';
 import { useContext } from 'react';
 
-const TextWeatherExplanation = () => {
+export const TextWeatherExplanation = () => {
   const { weatherData, celsius } = useContext(AppContext);
 
-  const weatherObject = weatherData && weatherData[0] ? weatherData[0] : null;
-  const temperatureC = weatherObject ? weatherObject.temperatureC : null;
+  const weather = weatherData && weatherData[0] ? weatherData[0] : null;
+  const temperatureC = weather ? weather.temperatureC : null;
   const temperatureF = temperatureC
     ? Math.floor((9 / 5) * Number(temperatureC) + 32)
     : null;
-  const description = weatherObject ? weatherObject.description : null;
-  const humidity = weatherObject ? weatherObject.humidity : null;
-  const windSpeed = weatherObject ? weatherObject.windSpeed : null;
+  const description = weather ? weather.description : null;
+  const humidity = weather ? weather.humidity : null;
+  const windSpeed = weather ? weather.windSpeed : null;
 
   let wear = 'a pair of shorts';
 
@@ -40,5 +40,3 @@ const TextWeatherExplanation = () => {
 
   return <p className="explanation-text">{weatherData ? text : welcomeText}</p>;
 };
-
-export default TextWeatherExplanation;

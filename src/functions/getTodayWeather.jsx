@@ -1,7 +1,7 @@
-import fetchData from '../services/fetcher';
+import { fetchData } from '../services/fetcher';
 const apikey = import.meta.env.VITE_API_KEY;
 
-const getTodayWeather = async location => {
+export const getTodayWeather = async location => {
   let endpoint = null;
   if (location.latitude && location.longitude) {
     endpoint = `https://api.weatherbit.io/v2.0/current?lat=${location.latitude}&lon=${location.longitude}&key=${apikey}&include=minutely`;
@@ -29,5 +29,3 @@ const getTodayWeather = async location => {
     throw error;
   }
 };
-
-export default getTodayWeather;

@@ -1,8 +1,8 @@
-import ForecastDay from './ForecastDay';
+import { ForecastDay } from './ForecastDay';
 import { AppContext } from '../store/AppContext';
 import { useContext } from 'react';
 
-const ForecastBox = () => {
+export const ForecastBox = () => {
   const { weatherData, datesArray } = useContext(AppContext);
   const forecastArray = weatherData && weatherData[1] ? weatherData[1] : null;
 
@@ -14,5 +14,3 @@ const ForecastBox = () => {
     </section>
   );
 };
-
-export default ForecastBox;

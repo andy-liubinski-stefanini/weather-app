@@ -1,21 +1,21 @@
 import { AppContext } from '../store/AppContext';
 import { useContext } from 'react';
-import TextWeatherExplanation from './TextWeatherExplanation';
+import { TextWeatherExplanation } from './TextWeatherExplanation';
 
-const InfoBox = () => {
+export const InfoBox = () => {
   const { weatherData, celsius } = useContext(AppContext);
 
-  const weatherObject = weatherData && weatherData[0] ? weatherData[0] : null;
+  const weather = weatherData && weatherData[0] ? weatherData[0] : null;
 
-  const temperatureC = weatherObject ? weatherObject.temperatureC : null;
+  const temperatureC = weather ? weather.temperatureC : null;
   const temperatureF = temperatureC
     ? Math.floor((9 / 5) * Number(temperatureC) + 32)
     : null;
-  const humidity = weatherObject ? weatherObject.humidity : 'N/A';
-  const airQuality = weatherObject ? weatherObject.airQuality : 'N/A';
-  const uvIndex = weatherObject ? weatherObject.uvIndex : 'N/A';
-  const iconLink = weatherObject
-    ? `https://cdn.weatherbit.io/static/img/icons/${weatherObject.icon}.png`
+  const humidity = weather ? weather.humidity : 'N/A';
+  const airQuality = weather ? weather.airQuality : 'N/A';
+  const uvIndex = weather ? weather.uvIndex : 'N/A';
+  const iconLink = weather
+    ? `https://cdn.weatherbit.io/static/img/icons/${weather.icon}.png`
     : null;
 
   return (
@@ -56,5 +56,3 @@ const InfoBox = () => {
     </section>
   );
 };
-
-export default InfoBox;

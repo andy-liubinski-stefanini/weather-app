@@ -2,7 +2,7 @@
 import { AppContext } from '../store/AppContext';
 import { useContext } from 'react';
 
-const ForecastDay = ({ day, formattedDate }) => {
+export const ForecastDay = ({ day, formattedDate }) => {
   const { celsius } = useContext(AppContext);
 
   const maxTempC = day ? day.maxTempC : null;
@@ -38,5 +38,3 @@ const ForecastDay = ({ day, formattedDate }) => {
     </div>
   );
 };
-
-export default ForecastDay;

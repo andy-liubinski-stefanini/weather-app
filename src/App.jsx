@@ -1,7 +1,4 @@
-import { useContext } from 'react';
-import CitySection from './components/CitySection.jsx';
-import InfoBox from './components/InfoBox.jsx';
-import ForecastBox from './components/ForecastBox.jsx';
+import { CitySection, InfoBox, ForecastBox } from './index';
 
 function App() {
   return (

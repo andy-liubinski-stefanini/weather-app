@@ -3,7 +3,7 @@ import { CiCircleRemove } from 'react-icons/ci';
 import { AppContext } from '../store/AppContext';
 import { useEffect, useContext, useRef, useState } from 'react';
 
-const Search = () => {
+export const Search = () => {
   const { searchFieldVisible, setSearchFieldVisible, setSelectedLocation } =
     useContext(AppContext);
   const inputRef = useRef(null);
@@ -104,5 +104,3 @@ const Search = () => {
     </form>
   );
 };
-
-export default Search;
