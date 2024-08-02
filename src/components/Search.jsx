@@ -55,7 +55,7 @@ const Search = () => {
     <form
       onSubmit={handleSearchSubmit}
       autoFocus
-      className={`city_box--search search-box relative w-1/2 h-12 flex-row justify-evenly items-center ${
+      className={`outline outline-1 outline-red-600 city_box--search search-box relative w-1/2 h-12 flex-row justify-evenly items-center ${
         searchFieldVisible ? 'flex' : 'hidden'
       }`}
     >
@@ -69,7 +69,7 @@ const Search = () => {
       />
 
       <ul
-        className={`search-box--history history absolute top-12 left-8 w-2/3 transition-all duration-200 ${
+        className={` search-box--history history absolute top-12 left-8 w-2/3 transition-all duration-200 ${
           isInputFocused && searchHistory.length > 0
             ? 'h-auto opacity-100'
             : 'h-0 opacity-0'

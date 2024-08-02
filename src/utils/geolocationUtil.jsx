@@ -14,8 +14,7 @@ function handleError(error) {
       break;
   }
 }
-
-export function getCurrentLocation() {
+function getCurrentLocation() {
   return new Promise((resolve, reject) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -33,3 +32,5 @@ export function getCurrentLocation() {
       handleError(error);
     });
 }
+
+export default getCurrentLocation;
