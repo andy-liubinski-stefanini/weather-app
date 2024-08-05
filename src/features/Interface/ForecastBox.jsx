@@ -1,5 +1,5 @@
-import { ForecastDay } from './ForecastDay';
-import { AppContext } from '../store/AppContext';
+import { ForecastDay } from '../../index';
+import { AppContext } from '../../index';
 import { useContext } from 'react';
 
 export const ForecastBox = () => {

@@ -1,4 +1,4 @@
-import { AppContext } from '../store/AppContext';
+import { AppContext } from '../../index';
 import { useContext } from 'react';
 
 export const TextWeatherExplanation = () => {

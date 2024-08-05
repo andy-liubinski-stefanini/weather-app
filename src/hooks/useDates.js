@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import generateFutureDates from '../utils/dateUtil';
+import { dateUtil } from '../index';
 
 export const useDates = () => {
   const [datesArray, setDatesArray] = useState([]);
 
   useEffect(() => {
-    const dates = generateFutureDates();
+    const dates = dateUtil();
     setDatesArray(dates);
   }, []);
 

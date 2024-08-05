@@ -1,6 +1,7 @@
-import { AppContext } from '../store/AppContext';
+import { AppContext } from '../../index';
 import { useContext } from 'react';
-import { TextWeatherExplanation } from './TextWeatherExplanation';
+import { TextWeatherExplanation } from '../../index';
+import { InformationItem } from '../../index';
 
 export const InfoBox = () => {
   const { weatherData, celsius } = useContext(AppContext);
@@ -31,24 +32,16 @@ export const InfoBox = () => {
         <div className="informations-box--temps  px-4 flex flex-col justify-center items-center flex-grow text-5xl font-thin opacity-70">
           {weatherData ? `${celsius ? temperatureC : temperatureF}°` : `N/A°`}
         </div>
-        <div className="informations-box--air-qual air-qual px-4 flex flex-col justify-center items-center flex-grow ">
-          <h3 className="air-qual--title">Humidity:</h3>
-          <p className="air-qual--score text-3xl opacity-70">
-            {weatherData ? `${humidity}%` : `N/A%`}
-          </p>
-        </div>
-        <div className="informations-box--air-qual air-qual px-4 flex flex-col justify-center items-center flex-grow ">
-          <h3 className="air-qual--title">Air quality:</h3>
-          <p className="air-qual--score text-3xl opacity-70">
-            {weatherData ? airQuality : `N/A`}
-          </p>
-        </div>
-        <div className="informations-box--uv-index uv-index px-4 flex flex-col justify-center items-center flex-grow ">
-          <h3 className="uv-index--title">UV Index:</h3>
-          <p className="uv-index--score text-3xl opacity-70">
-            {weatherData ? uvIndex : `N/A`}
-          </p>
-        </div>
+
+        <InformationItem
+          legend={`Humidity:`}
+          info={weatherData && `${humidity}%`}
+        />
+        <InformationItem
+          legend={`Air quality:`}
+          info={weatherData && airQuality}
+        />
+        <InformationItem legend={`UV Index:`} info={weatherData && uvIndex} />
       </div>
       <div className="info-box--explanation explanation w-full flex flex-row justify-center items-center flex-grow pb-1">
         <TextWeatherExplanation />

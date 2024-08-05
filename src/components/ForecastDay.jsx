@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { AppContext } from '../store/AppContext';
+import { AppContext } from '../index';
 import { useContext } from 'react';
 
 export const ForecastDay = ({ day, formattedDate }) => {

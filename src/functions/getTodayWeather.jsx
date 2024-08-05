@@ -1,4 +1,4 @@
-import { fetchData } from '../services/fetcher';
+import { fetcher } from '../index';
 const apikey = import.meta.env.VITE_API_KEY;
 
 export const getTodayWeather = async location => {
@@ -11,7 +11,7 @@ export const getTodayWeather = async location => {
   }
 
   try {
-    const data = await fetchData(endpoint);
+    const data = await fetcher(endpoint);
     return {
       cityName: data.data[0].city_name,
       countryCode: data.data[0].country_code,

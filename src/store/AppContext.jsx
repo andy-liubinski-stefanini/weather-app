@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState, useEffect } from 'react';
-import useWeatherData from '../hooks/useWeatherData';
-import useDates from '../hooks/useDates';
-import useGeolocation from '../hooks/useGeolocation';
+import { useWeatherData } from '../index';
+import { useDates } from '../index';
+import { useGeolocation } from '../index';
 
 const AppContext = createContext();
 

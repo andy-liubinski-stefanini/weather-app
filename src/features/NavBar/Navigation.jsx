@@ -1,6 +1,6 @@
 import { CiLocationOn, CiMap } from 'react-icons/ci';
 import { useContext } from 'react';
-import { AppContext } from '../store/AppContext';
+import { AppContext } from '../../index';
 
 export const Navigation = () => {
   const { handleSearchButton, handleGeolocate, handleUnitToggle, celsius } =

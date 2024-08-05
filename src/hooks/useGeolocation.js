@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import getCurrentLocation from '../utils/geolocationUtil';
+import { geolocationUtil } from '../index';
 
 export const useGeolocation = () => {
   const [selectedLocation, setSelectedLocation] = useState({
@@ -9,7 +9,7 @@ export const useGeolocation = () => {
 
   const handleGeolocate = async () => {
     try {
-      const location = await getCurrentLocation();
+      const location = await geolocationUtil();
       setSelectedLocation({
         latitude: location.latitude,
         longitude: location.longitude,

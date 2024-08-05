@@ -1,4 +1,4 @@
-import { fetchData } from '../services/fetcher';
+import { fetcher } from '../index';
 const apikey = import.meta.env.VITE_API_KEY;
 
 export const getFutureWeather = async location => {
@@ -10,7 +10,7 @@ export const getFutureWeather = async location => {
     endpoint = `https://api.weatherbit.io/v2.0/forecast/daily?city=${location.locationName}&key=${apikey}`;
   }
   try {
-    const data = await fetchData(endpoint);
+    const data = await fetcher(endpoint);
     const dataArray = data.data;
     return dataArray.slice(0, 5).map(day => ({
       dateOfWeather: day.datetime,

@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import assembleAllWeather from '../functions/weatherService';
+import { weatherService } from '../index';
 
 export const useWeatherData = () => {
   const [weatherData, setWeatherData] = useState();
 
   const fetchWeather = async location => {
     if (location.longitude || location.locationName) {
-      const weather = await assembleAllWeather(location);
+      const weather = await weatherService(location);
       setWeatherData(weather);
     }
   };

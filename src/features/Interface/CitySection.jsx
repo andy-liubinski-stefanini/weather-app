@@ -1,6 +1,6 @@
-import { Navigation } from './Navigation';
-import { Search } from './Search';
-import { AppContext } from '../store/AppContext';
+import { Navigation } from '../../index';
+import { Search } from '../../index';
+import { AppContext } from '../../index';
 import { useContext } from 'react';
 
 export const CitySection = () => {

@@ -1,7 +1,7 @@
 import { getTodayWeather } from './getTodayWeather';
 import { getFutureWeather } from './getFutureWeather';
 
-export const assembleAllWeather = async location => {
+export const weatherService = async location => {
   try {
     const todayWeather = await getTodayWeather(location);
     const forecastWeather = await getFutureWeather(location);
