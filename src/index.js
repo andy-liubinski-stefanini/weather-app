@@ -17,7 +17,7 @@ export {
 export { useDates, useGeolocation, useWeatherData } from './hooks/index';
 
 // Services
-export { fetcher } from './services/index';
+export { baseQuery } from './services/index';
 
 // Store
 export {

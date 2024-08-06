@@ -1,13 +1,19 @@
-import { useState } from 'react';
-import { weatherService } from '../index';
+import { useState, useContext } from 'react';
+import { ErrorContext, weatherService } from '../index';
 
 export const useWeatherData = () => {
+  const { setError } = useContext(ErrorContext);
+
   const [weatherData, setWeatherData] = useState();
 
   const fetchWeather = async location => {
-    if (location.longitude || location.locationName) {
-      const weather = await weatherService(location);
-      setWeatherData(weather);
+    try {
+      if (location.longitude || location.locationName) {
+        const weather = await weatherService(location);
+        setWeatherData(weather);
+      }
+    } catch (error) {
+      setError(error.toString());
     }
   };
 

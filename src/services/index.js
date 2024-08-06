@@ -1,1 +1,1 @@
-export { fetcher } from './fetcher';
+export { baseQuery } from './baseQuery';
