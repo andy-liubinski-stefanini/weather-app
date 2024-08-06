@@ -1,10 +1,12 @@
-import { AppContext } from '../../index';
+import { AppContext, ErrorContext } from '../../index';
 import { useContext } from 'react';
 import { TextWeatherExplanation } from '../../index';
 import { InformationItem } from '../../index';
+import { ErrorDisplay } from '../../index';
 
 export const InfoBox = () => {
   const { weatherData, celsius } = useContext(AppContext);
+  const { error } = useContext(ErrorContext);
 
   const weather = weatherData && weatherData[0] ? weatherData[0] : null;
 
@@ -44,7 +46,7 @@ export const InfoBox = () => {
         <InformationItem legend={`UV Index:`} info={weatherData && uvIndex} />
       </div>
       <div className="info-box--explanation explanation w-full flex flex-row justify-center items-center flex-grow pb-1">
-        <TextWeatherExplanation />
+        {error ? <ErrorDisplay /> : <TextWeatherExplanation />}
       </div>
     </section>
   );

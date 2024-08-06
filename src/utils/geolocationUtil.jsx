@@ -1,25 +1,9 @@
-function handleError(error) {
-  switch (error.code) {
-    case error.PERMISSION_DENIED:
-      console.error('User denied the request for Geolocation.');
-      break;
-    case error.POSITION_UNAVAILABLE:
-      console.error('Location information is unavailable.');
-      break;
-    case error.TIMEOUT:
-      console.error('The request to get user location has timed out.');
-      break;
-    case error.UNKNOWN_ERROR:
-      console.error('An unknown error occurred.');
-      break;
-  }
-}
-export function geolocationUtil() {
+export const geolocationUtil = () => {
   return new Promise((resolve, reject) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(resolve, reject);
     } else {
-      console.error('Navigation is not supported by this browser');
+      reject(new Error('Navigation is not supported by this browser'));
     }
   })
     .then(position => {
@@ -29,6 +13,20 @@ export function geolocationUtil() {
       };
     })
     .catch(error => {
-      handleError(error);
+      return Promise.reject(error);
     });
-}
+};
+
+export const handleGeolocationError = error => {
+  switch (error.code) {
+    case error.PERMISSION_DENIED:
+      return 'User denied the request for Geolocation.';
+    case error.POSITION_UNAVAILABLE:
+      return 'Location information is unavailable.';
+    case error.TIMEOUT:
+      return 'The request to get user location has timed out.';
+    case error.UNKNOWN_ERROR:
+    default:
+      return 'An unknown error occurred.';
+  }
+};

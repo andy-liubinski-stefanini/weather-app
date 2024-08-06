@@ -1,10 +1,12 @@
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
-import { GlobalProvider } from './store/AppContext.jsx';
+import { GlobalProvider, ErrorProvider } from './index.js';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <GlobalProvider>
-    <App />
-  </GlobalProvider>
+  <ErrorProvider>
+    <GlobalProvider>
+      <App />
+    </GlobalProvider>
+  </ErrorProvider>
 );

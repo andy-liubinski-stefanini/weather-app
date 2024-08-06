@@ -1,7 +1,13 @@
-import { useState } from 'react';
-import { geolocationUtil } from '../index';
+import { useState, useContext } from 'react';
+import {
+  ErrorContext,
+  geolocationUtil,
+  handleGeolocationError,
+} from '../index';
 
 export const useGeolocation = () => {
+  const { setError } = useContext(ErrorContext);
+
   const [selectedLocation, setSelectedLocation] = useState({
     latitude: null,
     longitude: null,
@@ -15,7 +21,8 @@ export const useGeolocation = () => {
         longitude: location.longitude,
       });
     } catch (error) {
-      console.error('Error getting current location:', error);
+      const errorMessage = handleGeolocationError(error);
+      setError(errorMessage);
     }
   };
 

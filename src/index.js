@@ -1,7 +1,7 @@
 // src/index.js
 
 export { ForecastBox, CitySection, InfoBox } from './features/Interface/index';
-
+export { ErrorDisplay } from './features/ErrorDisplay/index';
 export { ForecastDay, InformationItem } from './components/index';
 export { Navigation, Search } from './features/NavBar/index';
 export { TextWeatherExplanation } from './features/WeatherToText/index';
@@ -20,7 +20,16 @@ export { useDates, useGeolocation, useWeatherData } from './hooks/index';
 export { fetcher } from './services/index';
 
 // Store
-export { AppContext, GlobalProvider } from './store/index';
+export {
+  AppContext,
+  GlobalProvider,
+  ErrorContext,
+  ErrorProvider,
+} from './store/index';
 
 // Utils
-export { dateUtil, geolocationUtil } from './utils/index';
+export {
+  dateUtil,
+  geolocationUtil,
+  handleGeolocationError,
+} from './utils/index';

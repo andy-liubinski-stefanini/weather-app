@@ -1,2 +1,2 @@
 export { dateUtil } from './dateUtil';
-export { geolocationUtil } from './geolocationUtil';
+export { geolocationUtil, handleGeolocationError } from './geolocationUtil';
