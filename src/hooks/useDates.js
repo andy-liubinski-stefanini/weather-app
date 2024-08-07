@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { dateUtil } from '../index';
+import { createFormattedDates } from '../utils';
 
 export const useDates = () => {
   const [formattedDates, setFormattedDates] = useState([]);
 
   useEffect(() => {
-    const dates = dateUtil();
+    const dates = createFormattedDates();
     setFormattedDates(dates);
   }, []);
 

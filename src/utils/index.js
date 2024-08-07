@@ -1,2 +1,2 @@
-export { dateUtil } from './dateUtil';
-export { geolocationUtil, handleGeolocationError } from './geolocationUtil';
+export { createFormattedDates } from './createFormattedDates';
+export { geolocate, handleGeolocationError } from './geolocate';

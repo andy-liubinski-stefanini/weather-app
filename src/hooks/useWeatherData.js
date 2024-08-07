@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
-import { ErrorContext, weatherService } from '../index';
+import { ErrorContext } from '../store';
+import { weatherService } from '../functions';
 
 export const useWeatherData = () => {
   const { setError } = useContext(ErrorContext);

@@ -1,10 +1,6 @@
 import { useState, useContext } from 'react';
-import {
-  ErrorContext,
-  geolocationUtil,
-  handleGeolocationError,
-} from '../index';
-
+import { ErrorContext } from '../store';
+import { geolocate, handleGeolocationError } from '../utils';
 export const useGeolocation = () => {
   const { setError } = useContext(ErrorContext);
 
@@ -15,7 +11,7 @@ export const useGeolocation = () => {
 
   const handleGeolocate = async () => {
     try {
-      const location = await geolocationUtil();
+      const location = await geolocate();
       setSelectedLocation({
         latitude: location.latitude,
         longitude: location.longitude,

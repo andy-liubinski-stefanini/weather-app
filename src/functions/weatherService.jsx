@@ -1,5 +1,5 @@
-import { getTodayWeather } from './getTodayWeather';
-import { getFutureWeather } from './getFutureWeather';
+import { getTodayWeather } from './';
+import { getFutureWeather } from './';
 
 export const weatherService = async location => {
   const todayWeather = await getTodayWeather(location);

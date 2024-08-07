@@ -1,6 +1,6 @@
 import { CiSearch } from 'react-icons/ci';
 import { CiCircleRemove } from 'react-icons/ci';
-import { AppContext } from '../../index';
+import { AppContext } from '../../store';
 import { useEffect, useContext, useRef, useState } from 'react';
 
 export const Search = () => {
@@ -77,20 +77,23 @@ export const Search = () => {
         >
           {searchHistory.map((place, i) => (
             <li
-              onClick={() => handleHistoryItem(place)}
-              key={i}
-              className="history--item cursor-pointer flex flex-row justify-between opacity-[inherit] hover:bg-slate-100"
+              key={`${place}-${i}`}
+              className="history--item cursor-pointer flex flex-row justify-between opacity-[inherit] hover:bg-slate-200"
             >
-              <p className="text-black">{place}</p>
+              <p
+                onClick={() => handleHistoryItem(place)}
+                className="text-black"
+              >
+                {place}
+              </p>
               <button
                 type="button"
-                onClick={e => {
-                  e.stopPropagation();
+                onClick={() => {
                   handleDeleteHistoryItem(i);
                 }}
-                className=""
+                className=" size-6 place-items-center flex"
               >
-                <CiCircleRemove className="delete-icon" />
+                <CiCircleRemove className="font-bold text-red-800 size-6 hover:bg-red-100" />
               </button>
             </li>
           ))}

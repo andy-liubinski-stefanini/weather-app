@@ -1,4 +1,4 @@
-import { CitySection, InfoBox, ForecastBox } from './index';
+import { CitySection, InfoBox, ForecastBox } from './features/WeatherDisplay';
 
 function App() {
   return (

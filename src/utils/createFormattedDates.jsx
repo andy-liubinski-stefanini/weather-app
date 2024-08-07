@@ -9,7 +9,7 @@ const createOneDay = days => {
   };
 };
 
-export const dateUtil = () => {
+export const createFormattedDates = () => {
   const formattedDates = [];
   for (let i = 0; i < 5; i++) {
     formattedDates.push(createOneDay(i));

@@ -1,4 +1,4 @@
-import { baseQuery } from '../index';
+import { baseQuery } from '../services';
 const apikey = import.meta.env.VITE_API_KEY;
 
 export const getFutureWeather = async location => {
