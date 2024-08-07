@@ -10,9 +10,9 @@ export const getFutureWeather = async location => {
     endpoint = `https://api.weatherbit.io/v2.0/forecast/daily?city=${location.locationName}&key=${apikey}`;
   }
 
-  const data = await baseQuery(endpoint);
-  const dataArray = data.data;
-  return dataArray.slice(0, 5).map(day => ({
+  const response = await baseQuery(endpoint);
+  const data = response.data;
+  return data.slice(0, 5).map(day => ({
     dateOfWeather: day.datetime,
     maxTempC: day.max_temp,
     minTempC: day.min_temp,

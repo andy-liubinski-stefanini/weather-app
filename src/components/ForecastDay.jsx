@@ -3,7 +3,7 @@ import { AppContext } from '../index';
 import { useContext } from 'react';
 
 export const ForecastDay = ({ day, formattedDate }) => {
-  const { celsius } = useContext(AppContext);
+  const { isCelsius } = useContext(AppContext);
 
   const maxTempC = day ? day.maxTempC : null;
   const minTempC = day ? day.minTempC : null;
@@ -32,8 +32,8 @@ export const ForecastDay = ({ day, formattedDate }) => {
         {day ? `${day.description}` : `Loading...`}
       </div>
       <div className="day-forecast--temps pb-4">
-        Max:{day ? `${celsius ? maxTempC : maxTempF}°` : `Loading...`} | Min:
-        {day ? `${celsius ? minTempC : minTempF}°` : `Loading...`}
+        Max:{day ? `${isCelsius ? maxTempC : maxTempF}°` : `Loading...`} | Min:
+        {day ? `${isCelsius ? minTempC : minTempF}°` : `Loading...`}
       </div>
     </div>
   );

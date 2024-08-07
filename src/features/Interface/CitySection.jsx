@@ -4,16 +4,16 @@ import { AppContext } from '../../index';
 import { useContext } from 'react';
 
 export const CitySection = () => {
-  const { searchFieldVisible, weatherData, datesArray } =
+  const { searchFieldVisible, weatherData, formattedDates } =
     useContext(AppContext);
 
-  const weather = weatherData && weatherData[0] ? weatherData[0] : null;
+  const weather = weatherData?.[0] ?? null;
   const cityCountry = weather
-    ? `${weather.cityName}, ${weather.countryCode}`
+    ? `${weather?.cityName}, ${weather?.countryCode}`
     : 'Loading...';
   const today =
-    datesArray.length > 0
-      ? `${datesArray[0]['formattedWeekday']}, ${datesArray[0]['formattedDate']}`
+    formattedDates.length > 0
+      ? `${formattedDates[0]['formattedWeekday']}, ${formattedDates[0]['formattedDate']}`
       : '';
 
   return (

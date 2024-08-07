@@ -10,9 +10,9 @@ const createOneDay = days => {
 };
 
 export const dateUtil = () => {
-  const arrayOfDays = [];
+  const formattedDates = [];
   for (let i = 0; i < 5; i++) {
-    arrayOfDays.push(createOneDay(i));
+    formattedDates.push(createOneDay(i));
   }
-  return arrayOfDays;
+  return formattedDates;
 };

@@ -5,10 +5,10 @@ import { InformationItem } from '../../index';
 import { ErrorDisplay } from '../../index';
 
 export const InfoBox = () => {
-  const { weatherData, celsius } = useContext(AppContext);
+  const { weatherData, isCelsius } = useContext(AppContext);
   const { error } = useContext(ErrorContext);
 
-  const weather = weatherData && weatherData[0] ? weatherData[0] : null;
+  const weather = weatherData?.[0] ?? null;
 
   const temperatureC = weather ? weather.temperatureC : null;
   const temperatureF = temperatureC
@@ -32,7 +32,7 @@ export const InfoBox = () => {
           />
         </div>
         <div className="informations-box--temps  px-4 flex flex-col justify-center items-center flex-grow text-5xl font-thin opacity-70">
-          {weatherData ? `${celsius ? temperatureC : temperatureF}°` : `N/A°`}
+          {weatherData ? `${isCelsius ? temperatureC : temperatureF}°` : `N/A°`}
         </div>
 
         <InformationItem

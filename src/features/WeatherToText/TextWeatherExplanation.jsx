@@ -2,7 +2,7 @@ import { AppContext } from '../../index';
 import { useContext } from 'react';
 
 export const TextWeatherExplanation = () => {
-  const { weatherData, celsius } = useContext(AppContext);
+  const { weatherData, isCelsius } = useContext(AppContext);
 
   const weather = weatherData && weatherData[0] ? weatherData[0] : null;
   const temperatureC = weather ? weather.temperatureC : null;
@@ -33,7 +33,7 @@ export const TextWeatherExplanation = () => {
     'Please press geolocate button to see the local weather or map button to see weather for any city in the world.';
 
   const text = `It is currently ${
-    celsius ? temperatureC : temperatureF
+    isCelsius ? temperatureC : temperatureF
   }° with ${description ? description.toLowerCase() : `N/A`}, humidity of ${
     humidity ? humidity : `N/A`
   }% and wind speed of ${windSpeed} m/s. Wear ${wear}.`;

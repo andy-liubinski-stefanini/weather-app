@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { AppContext } from '../../index';
 
 export const Navigation = () => {
-  const { handleSearchButton, handleGeolocate, handleUnitToggle, celsius } =
+  const { handleSearchButton, handleGeolocate, handleUnitToggle, isCelsius } =
     useContext(AppContext);
 
   return (
@@ -24,7 +24,7 @@ export const Navigation = () => {
         onClick={handleUnitToggle}
         className="navigation--toggle_unit border rounded-full h-12 w-12 flex justify-center items-center hover:border-2 font-thin text-xl"
       >
-        {celsius ? 'C°' : 'F°'}
+        {isCelsius ? 'C°' : 'F°'}
       </button>
     </nav>
   );

@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { dateUtil } from '../index';
 
 export const useDates = () => {
-  const [datesArray, setDatesArray] = useState([]);
+  const [formattedDates, setFormattedDates] = useState([]);
 
   useEffect(() => {
     const dates = dateUtil();
-    setDatesArray(dates);
+    setFormattedDates(dates);
   }, []);
 
-  return { datesArray };
+  return { formattedDates };
 };

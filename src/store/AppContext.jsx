@@ -7,9 +7,9 @@ import { useGeolocation } from '../index';
 const AppContext = createContext();
 
 function GlobalProvider({ children }) {
-  const [celsius, setCelsius] = useState(true);
+  const [isCelsius, setIsCelsius] = useState(true);
   const [searchFieldVisible, setSearchFieldVisible] = useState(false);
-  const { datesArray } = useDates();
+  const { formattedDates } = useDates();
   const { weatherData, fetchWeather } = useWeatherData();
   const { selectedLocation, handleGeolocate, setSelectedLocation } =
     useGeolocation();
@@ -25,8 +25,8 @@ function GlobalProvider({ children }) {
     setSearchFieldVisible(prevSearchFieldVisible => !prevSearchFieldVisible);
   };
 
-  const toggleCelsius = () => {
-    setCelsius(prevState => !prevState);
+  const toggleIsCelsius = () => {
+    setIsCelsius(prevState => !prevState);
   };
 
   return (
@@ -37,9 +37,9 @@ function GlobalProvider({ children }) {
         setSearchFieldVisible,
         handleGeolocate,
         weatherData,
-        datesArray,
-        handleUnitToggle: toggleCelsius,
-        celsius,
+        formattedDates,
+        handleUnitToggle: toggleIsCelsius,
+        isCelsius,
         setSelectedLocation,
       }}
     >
