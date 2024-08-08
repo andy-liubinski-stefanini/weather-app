@@ -1,6 +1,6 @@
 import { CiSearch } from 'react-icons/ci';
-import { CiCircleRemove } from 'react-icons/ci';
 import { AppContext } from '../../store';
+import { SearchHistory } from '.';
 import { useEffect, useContext, useRef, useState } from 'react';
 
 export const Search = () => {
@@ -9,20 +9,6 @@ export const Search = () => {
   const inputRef = useRef(null);
   const [searchHistory, setSearchHistory] = useState([]);
   const [isInputFocused, setIsInputFocused] = useState(false);
-
-  useEffect(() => {
-    // Load search history from local storage when the component mounts
-    const storedHistory = localStorage.getItem('searchHistory');
-    if (storedHistory) {
-      setSearchHistory(JSON.parse(storedHistory));
-    }
-  }, []);
-
-  const handleDeleteHistoryItem = i => {
-    const newHistory = searchHistory.filter((place, ii) => ii !== i);
-    setSearchHistory(newHistory);
-    localStorage.setItem('searchHistory', JSON.stringify(newHistory));
-  };
 
   const handleSearchSubmit = evt => {
     evt.preventDefault();
@@ -46,16 +32,18 @@ export const Search = () => {
     }
   }, [searchFieldVisible]);
 
-  const handleHistoryItem = place => {
-    setSelectedLocation({ locationName: place });
-    setSearchFieldVisible(prevState => !prevState);
-  };
+  useEffect(() => {
+    const storedHistory = localStorage.getItem('searchHistory');
+    if (storedHistory) {
+      setSearchHistory(JSON.parse(storedHistory));
+    }
+  }, []);
 
   return (
     <form
       onSubmit={handleSearchSubmit}
       autoFocus
-      className={` city_box--search search-box  w-1/2 h-12 flex-row justify-evenly items-center ${
+      className={` city_box--search search-box w-1/2 h-12 flex-row justify-evenly items-center ${
         searchFieldVisible ? 'flex' : 'hidden'
       }`}
     >
@@ -68,36 +56,11 @@ export const Search = () => {
           placeholder="Enter a city"
           className="search-box--input rounded active:border active:border-slate-600 active:outline-none h-10 w-full p-1 placeholder:opacity-50 text-black"
         />
-        <ul
-          className={`absolute search-box--history history w-full transition-all duration-200 ${
-            isInputFocused && searchHistory.length > 0
-              ? 'h-auto opacity-100'
-              : 'h-0 opacity-0'
-          } bg-slate-50 border rounded p-2 z-50`}
-        >
-          {searchHistory.map((place, i) => (
-            <li
-              key={`${place}-${i}`}
-              className="history--item cursor-pointer flex flex-row justify-between opacity-[inherit] hover:bg-slate-200"
-            >
-              <p
-                onClick={() => handleHistoryItem(place)}
-                className="text-black"
-              >
-                {place}
-              </p>
-              <button
-                type="button"
-                onClick={() => {
-                  handleDeleteHistoryItem(i);
-                }}
-                className=" size-6 place-items-center flex"
-              >
-                <CiCircleRemove className="font-bold text-red-800 size-6 hover:bg-red-100" />
-              </button>
-            </li>
-          ))}
-        </ul>
+        <SearchHistory
+          isInputFocused={isInputFocused}
+          searchHistory={searchHistory}
+          setSearchHistory={setSearchHistory}
+        />
       </div>
       <button
         type="submit"

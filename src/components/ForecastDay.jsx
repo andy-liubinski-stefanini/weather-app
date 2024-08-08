@@ -16,6 +16,9 @@ export const ForecastDay = ({ day, formattedDate }) => {
     ? Math.floor((9 / 5) * Number(minTempC) + 32)
     : null;
 
+  const maxTempDisplay = `${isCelsius ? maxTempC : maxTempF}°`;
+  const minTempDisplay = `${isCelsius ? minTempC : minTempF}°`;
+
   const iconLink = day
     ? `https://cdn.weatherbit.io/static/img/icons/${day.icon}.png`
     : null;
@@ -32,8 +35,8 @@ export const ForecastDay = ({ day, formattedDate }) => {
         {day ? `${day.description}` : `Loading...`}
       </div>
       <div className="day-forecast--temps pb-4">
-        Max:{day ? `${isCelsius ? maxTempC : maxTempF}°` : `Loading...`} | Min:
-        {day ? `${isCelsius ? minTempC : minTempF}°` : `Loading...`}
+        Max:{day ? maxTempDisplay : `Loading...`} | Min:
+        {day ? minTempDisplay : `Loading...`}
       </div>
     </div>
   );
