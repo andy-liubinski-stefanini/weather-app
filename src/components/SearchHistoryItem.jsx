@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { CiCircleRemove } from 'react-icons/ci';
 
-const SearchHistoryItem = ({
+export const SearchHistoryItem = ({
   handleHistoryItem,
   handleDeleteHistoryItem,
   place,
@@ -23,4 +23,3 @@ const SearchHistoryItem = ({
   );
 };
 
-export default SearchHistoryItem;
