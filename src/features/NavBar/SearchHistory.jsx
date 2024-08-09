@@ -2,6 +2,7 @@
 import { useContext } from 'react';
 import { AppContext } from '../../store';
 import { SearchHistoryItem } from '../../components';
+import './styles.scss'; // Import the SCSS file
 
 export const SearchHistory = ({
   isInputFocused,
@@ -21,14 +22,12 @@ export const SearchHistory = ({
     setSearchFieldVisible(prevState => !prevState);
   };
 
+  const historyClass = isInputFocused && searchHistory.length > 0
+    ? 'search-box--history expanded'
+    : 'search-box--history collapsed';
+
   return (
-    <ul
-      className={`absolute search-box--history history w-full transition-all duration-200 ${
-        isInputFocused && searchHistory.length > 0
-          ? 'h-auto opacity-100'
-          : 'h-0 opacity-0'
-      } bg-slate-50 border rounded p-2 z-50`}
-    >
+    <ul className={historyClass}>
       {searchHistory.map((place, i) => (
         <SearchHistoryItem
           handleHistoryItem={handleHistoryItem}

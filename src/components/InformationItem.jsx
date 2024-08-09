@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
+import './styles.scss';
+
 export const InformationItem = ({ legend, info }) => {
   return (
-    <div className=" px-4 flex flex-col justify-center items-center flex-grow ">
-      <h3 className="uv-index--title">{legend}</h3>
-      <p className="uv-index--score text-3xl opacity-70">{info ?? `N/A`}</p>
+    <div className="informations-box--item info-item">
+      <h3 className="info-item--title">{legend}</h3>
+      <p className="info-item--score">{info ?? `N/A`}</p>
     </div>
   );
 };

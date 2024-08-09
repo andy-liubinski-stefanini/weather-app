@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { AppContext } from '../store';
 import { useContext } from 'react';
-
 export const ForecastDay = ({ day, formattedDate }) => {
   const { isCelsius } = useContext(AppContext);
 
@@ -24,17 +23,17 @@ export const ForecastDay = ({ day, formattedDate }) => {
     : null;
 
   return (
-    <div className="forecast-box--day day-forecast w-1/5 h-full flex flex-col justify-between items-center">
-      <div className="day-forecast--day font-light text-lg">
+    <div className="forecast-box--day day-forecast">
+      <div className="day-forecast--day">
         {day ? `${formattedDate.formattedDate}` : `Loading...`}
       </div>
-      <div className="day-forecast--icon font-bold text-6xl">
-        <img className="w-16 h-16" src={iconLink} alt="Weather icon" />
+      <div className="day-forecast--icon icon">
+        <img className="icon--img" src={iconLink} alt="Weather icon" />
       </div>
-      <div className="day-forecast--description text-sm">
+      <div className="day-forecast--description">
         {day ? `${day.description}` : `Loading...`}
       </div>
-      <div className="day-forecast--temps pb-4">
+      <div className="day-forecast--temps">
         Max:{day ? maxTempDisplay : `Loading...`} | Min:
         {day ? minTempDisplay : `Loading...`}
       </div>

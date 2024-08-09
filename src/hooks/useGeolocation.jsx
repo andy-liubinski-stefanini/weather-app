@@ -17,7 +17,6 @@ export const useGeolocation = () => {
         longitude: location.longitude,
       });
       setError(null)
-      console.log('ERROR NULL');
     } catch (error) {
       const errorMessage = handleGeolocationError(error);
       setError(errorMessage);

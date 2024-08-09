@@ -2,6 +2,7 @@ import { CiSearch } from 'react-icons/ci';
 import { AppContext } from '../../store';
 import { SearchHistory } from '.';
 import { useEffect, useContext, useRef, useState } from 'react';
+import './styles.scss'; // Import the SCSS file
 
 export const Search = () => {
   const { searchFieldVisible, setSearchFieldVisible, setSelectedLocation } =
@@ -42,19 +43,16 @@ export const Search = () => {
   return (
     <form
       onSubmit={handleSearchSubmit}
-      autoFocus
-      className={` city_box--search search-box w-1/2 h-12 flex-row justify-evenly items-center ${
-        searchFieldVisible ? 'flex' : 'hidden'
-      }`}
+      className={`city_box--search search-box ${searchFieldVisible ? 'flex' : 'hidden'}`}
     >
-      <div className="w-2/3 relative">
+      <div className="search-box--wrapper">
         <input
           onFocus={() => setIsInputFocused(true)}
           onBlur={() => setIsInputFocused(false)}
           list="search-history"
           ref={inputRef}
           placeholder="Enter a city"
-          className="search-box--input rounded active:border active:border-slate-600 active:outline-none h-10 w-full p-1 placeholder:opacity-50 text-black"
+          className="search-box--input"
         />
         <SearchHistory
           isInputFocused={isInputFocused}
@@ -62,10 +60,7 @@ export const Search = () => {
           setSearchHistory={setSearchHistory}
         />
       </div>
-      <button
-        type="submit"
-        className="search-box--button border rounded-full h-12 w-12 flex justify-center items-center hover:border-2 font-thin text-xl"
-      >
+      <button type="submit" className="search-box--button">
         <CiSearch />
       </button>
     </form>

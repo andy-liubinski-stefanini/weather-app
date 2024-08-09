@@ -1,29 +1,21 @@
 import { CiLocationOn, CiMap } from 'react-icons/ci';
 import { useContext } from 'react';
 import { AppContext } from '../../store';
+import './styles.scss'; // Import the SCSS file
 
 export const Navigation = () => {
   const { handleSearchButton, handleGeolocate, handleUnitToggle, isCelsius } =
     useContext(AppContext);
 
   return (
-    <nav className="city--navigation_box navigation absolute h-full w-16 flex flex-col justify-evenly items-center">
-      <button
-        onClick={handleGeolocate}
-        className="navigation--geolocate border rounded-full h-12 w-12 flex justify-center items-center hover:border-2 font-thin text-xl"
-      >
+    <nav className="city--navigation_box">
+      <button onClick={handleGeolocate} className="city--navigation_box--geolocate">
         <CiLocationOn />
       </button>
-      <button
-        onClick={handleSearchButton}
-        className="navigation--search  border rounded-full h-12 w-12 flex justify-center items-center hover:border-2 font-thin text-xl"
-      >
+      <button onClick={handleSearchButton} className="city--navigation_box--search">
         <CiMap />
       </button>
-      <button
-        onClick={handleUnitToggle}
-        className="navigation--toggle_unit border rounded-full h-12 w-12 flex justify-center items-center hover:border-2 font-thin text-xl"
-      >
+      <button onClick={handleUnitToggle} className="city--navigation_box--toggle_unit">
         {isCelsius ? 'C°' : 'F°'}
       </button>
     </nav>

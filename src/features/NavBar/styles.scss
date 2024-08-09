@@ -1,0 +1,100 @@
+/* Search History */
+.search-box--history {
+    position: absolute; /* absolute */
+    width: 100%; /* w-full */
+    transition: all 0.2s; /* transition-all duration-200 */
+    background-color: #f8fafc; /* bg-slate-50 */
+    border: 1px solid #e2e8f0; /* border */
+    border-radius: 0.25rem; /* rounded */
+    padding: 0.5rem; /* p-2 */
+    z-index: 50; /* z-50 */
+  
+    &.collapsed {
+      height: 0;
+      opacity: 0;
+    }
+  
+    &.expanded {
+      height: auto;
+      opacity: 1;
+    }
+  }
+  
+  /* Search Box */
+  .search-box {
+    width: 50%; /* w-1/2 */
+    height: 3rem; /* h-12 */
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  
+    &.hidden {
+      display: none;
+    }
+  
+    &.flex {
+      display: flex;
+    }
+  
+    &--wrapper {
+      width: 66.666667%; /* w-2/3 */
+      position: relative; /* relative */
+    }
+  
+    &--input {
+      border-radius: 0.25rem; /* rounded */
+      height: 2.5rem; /* h-10 */
+      width: 100%; /* w-full */
+      padding: 0.25rem; /* p-1 */
+      border: 1px solid #94a3b8; /* active:border-slate-600 */
+      outline: none; /* active:outline-none */
+      color: #000000; /* text-black */
+      &::placeholder {
+        opacity: 0.5; /* placeholder:opacity-50 */
+      }
+    }
+  
+    &--button {
+      border: 1px solid #94a3b8; /* border */
+      border-radius: 50%; /* rounded-full */
+      height: 3rem; /* h-12 */
+      width: 3rem; /* w-12 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 200; /* font-thin */
+      font-size: 1.25rem; /* text-xl */
+      &:hover {
+        border-width: 2px; /* hover:border-2 */
+      }
+    }
+  }
+  
+  /* Navigation */
+  .city--navigation_box {
+    position: absolute; /* absolute */
+    height: 100%; /* h-full */
+    width: 4rem; /* w-16 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  
+    &--geolocate,
+    &--search,
+    &--toggle_unit {
+      border: 1px solid #94a3b8; /* border */
+      border-radius: 50%; /* rounded-full */
+      height: 3rem; /* h-12 */
+      width: 3rem; /* w-12 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 200; /* font-thin */
+      font-size: 1.25rem; /* text-xl */
+      &:hover {
+        border-width: 2px; /* hover:border-2 */
+      }
+    }
+  }
+  
