@@ -1,8 +1,9 @@
 import { CitySection, InfoBox, ForecastBox } from './features/WeatherDisplay';
+import './index.scss'; // Import the SCSS file
 
 function App() {
   return (
-    <main className="main p-0 m-0 flex flex-col items-center justify-start h-screen bg-[#6D8CA0]">
+    <main className="main">
       <CitySection />
       <InfoBox />
       <ForecastBox />

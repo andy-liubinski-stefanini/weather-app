@@ -42,8 +42,9 @@ export const Search = () => {
 
   return (
     <form
+      hidden={!searchFieldVisible}
       onSubmit={handleSearchSubmit}
-      className={`city_box--search search-box ${searchFieldVisible ? 'flex' : 'hidden'}`}
+      className='city_box--search search-box'
     >
       <div className="search-box--wrapper">
         <input

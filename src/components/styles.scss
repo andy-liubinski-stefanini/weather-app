@@ -3,7 +3,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     opacity: inherit;
+    height: fit-content;
   
     &:hover {
       background-color: #e5e7eb; // hover:bg-slate-200
@@ -11,24 +13,29 @@
   
     &--text {
       color: #000000; // text-black
+      line-height: inherit;
+
+      padding: 0;
+      margin: 0;
     }
   
     &--button {
-      width: 1.5rem; // size-6
-      height: 1.5rem; // size-6
+      cursor: pointer;
+
       display: flex;
+      margin: 0;
       place-items: center;
+      border: none;
+      font-size: 2rem;
+      background-color: rgba($color: #000000, $alpha: 0);
+      &:hover {
+        background-color: #fee2e2; // hover:bg-red-100
+      }
     }
   
     &--icon {
       font-weight: 700; // font-bold
-      color: #991b1b; // text-red-800
-      width: 1.5rem;
-      height: 1.5rem;
-  
-      &:hover {
-        background-color: #fee2e2; // hover:bg-red-100
-      }
+      color: #991b1b; // text-red-800      
     }
   }
   
@@ -48,6 +55,7 @@
     &--score {
       font-size: 1.875rem; // text-3xl
       opacity: 0.7; // opacity-70
+      margin: 0;
     }
   }
   
