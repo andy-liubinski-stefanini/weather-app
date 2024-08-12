@@ -58,7 +58,7 @@
   
     &--button {
       cursor: pointer;
-      background-color: hsla(0, 0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
       color: white;
       font-size: 1.5rem;
       border: 1px solid vars.$borderColor; /* border */
@@ -89,7 +89,7 @@
     &--geolocate,
     &--search,
     &--toggle_unit {
-      background-color: hsla(0, 0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
       color: white;
       cursor: pointer;
       border: 1px solid vars.$borderColor; /* border */
