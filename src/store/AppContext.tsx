@@ -1,19 +1,16 @@
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
 import { useGeolocation, useWeatherData, useDates } from '../hooks';
 
-
-
-// TODO after functions
 interface AppContextProps {
   handleSearchButton: () => void;
   searchFieldVisible: boolean;
-  setSearchFieldVisible: (visible: boolean) => void;
+  setSearchFieldVisible: React.Dispatch<React.SetStateAction<boolean>>;
   handleGeolocate: () => void;
-  weatherData: any; // ???
-  formattedDates: any; // ??? 
+  weatherData: ReturnType<typeof useWeatherData>['weatherData'];
+  formattedDates: ReturnType<typeof useDates>['formattedDates']; 
   handleUnitToggle: () => void;
   isCelsius: boolean;
-  setSelectedLocation: (any) => void;  // ???
+  setSelectedLocation: ReturnType<typeof useGeolocation>['setSelectedLocation']; 
 }
 
 // @ts-expect-error - context is hard  to type

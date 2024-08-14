@@ -1,6 +1,6 @@
 interface InformationItemProps {
   legend: string;
-  info?: string;
+  info?: string | number | null;
 }
 
 import './styles.scss';
