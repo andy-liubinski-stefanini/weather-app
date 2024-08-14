@@ -6,12 +6,12 @@ import { Location, WeatherData } from './types';
 
 // TODO anys
 export const useWeatherData = (): {
-  weatherData: WeatherData | null; 
+  weatherData?: WeatherData; 
   fetchWeather: (location: Location) => Promise<void>;
 } => {
   const { setError } = useContext(ErrorContext);
 
-  const [weatherData, setWeatherData] = useState<WeatherData | null>(null); 
+  const [weatherData, setWeatherData] = useState<WeatherData>(); 
 
   const fetchWeather = async (location: Location) => {
     try {
@@ -20,7 +20,7 @@ export const useWeatherData = (): {
         setWeatherData(weather);
       }
     } catch (error) {
-      setError(error.toString());
+      setError(error?.toString?.());
     }
   };
 

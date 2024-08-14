@@ -10,7 +10,11 @@ interface ErrorProviderProps {
   children: ReactNode;
 }
 
-export const ErrorContext = createContext<ErrorContextProps | undefined>(undefined);
+export const ErrorContext = createContext<ErrorContextProps>({
+  error: null,
+  setError: ()=>{},
+  clearError: ()=>{},
+});
 
 export const ErrorProvider: React.FC<ErrorProviderProps> = ({ children }) => {
   const [error, setError] = useState<string | null>(null);

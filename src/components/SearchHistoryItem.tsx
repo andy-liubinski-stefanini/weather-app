@@ -1,9 +1,14 @@
-/* eslint-disable react/prop-types */
 import './styles.scss';
-
 import { CiCircleRemove } from 'react-icons/ci';
 
-export const SearchHistoryItem = ({
+interface SearchHistoryItemProps {
+  handleHistoryItem: (place: string) => void;
+  handleDeleteHistoryItem: (index: number) => void;
+  place: string;
+  i: number;
+}
+
+export const SearchHistoryItem: React.FC<SearchHistoryItemProps> = ({
   handleHistoryItem,
   handleDeleteHistoryItem,
   place,
@@ -19,10 +24,8 @@ export const SearchHistoryItem = ({
         onClick={() => handleDeleteHistoryItem(i)}
         className="history-item--button"
       >
-        <CiCircleRemove
-          className="history-item--icon font-bold" />
+        <CiCircleRemove className="history-item--icon font-bold" />
       </button>
     </li>
   );
 };
-

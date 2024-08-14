@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { AppContext } from '../../store';
 import './styles.scss'; // Import the SCSS file
 
-export const Navigation = () => {
+export const Navigation: React.FC = () => {
   const { handleSearchButton, handleGeolocate, handleUnitToggle, isCelsius } =
     useContext(AppContext);
 

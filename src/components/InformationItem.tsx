@@ -1,7 +1,11 @@
-/* eslint-disable react/prop-types */
+interface InformationItemProps {
+  legend: string;
+  info?: string;
+}
+
 import './styles.scss';
 
-export const InformationItem = ({ legend, info }) => {
+export const InformationItem: React.FC<InformationItemProps> = ({ legend, info }) => {
   return (
     <div className="informations-box--item info-item">
       <h3 className="info-item--title">{legend}</h3>

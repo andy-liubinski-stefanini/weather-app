@@ -16,7 +16,8 @@ interface AppContextProps {
   setSelectedLocation: (any) => void;  // ???
 }
 
-const AppContext = createContext<AppContextProps | undefined>(undefined);
+// @ts-expect-error - context is hard  to type
+const AppContext = createContext<AppContextProps>();
 
 interface GlobalProviderProps {
   children: ReactNode;
@@ -24,7 +25,7 @@ interface GlobalProviderProps {
 
 const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   const [isCelsius, setIsCelsius] = useState(true);
-  const [searchFieldVisible, setSearchFieldVisible] = useState(false);
+  const [searchFieldVisible, setSearchFieldVisible] = useState<boolean>(false);
   const { formattedDates } = useDates();
   const { weatherData, fetchWeather } = useWeatherData();
   const { selectedLocation, handleGeolocate, setSelectedLocation } = useGeolocation();
