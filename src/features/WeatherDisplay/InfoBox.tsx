@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { TextWeatherExplanation } from '../WeatherToText';
 import { InformationItem } from '../../components';
 import { ErrorDisplay } from '../ErrorDisplay';
-import './styles.scss'; // Import the SCSS file
+import './styles.scss'; 
 
 export const InfoBox: React.FC = () => {
   const {

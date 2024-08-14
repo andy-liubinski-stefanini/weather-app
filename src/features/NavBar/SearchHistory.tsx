@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { AppContext } from '../../store';
 import { SearchHistoryItem } from '../../components';
-import './styles.scss'; // Import the SCSS file
+import './styles.scss'; 
 
 interface SearchHistoryProps {
   isInputFocused: boolean;

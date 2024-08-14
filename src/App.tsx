@@ -1,5 +1,5 @@
 import { CitySection, InfoBox, ForecastBox } from './features/WeatherDisplay';
-import './index.scss'; // Import the SCSS file
+import './index.scss'; 
 
 const App: React.FC = () => {
   return (

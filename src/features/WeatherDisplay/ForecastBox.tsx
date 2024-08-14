@@ -1,7 +1,7 @@
 import { ForecastDay } from '../../components';
 import { AppContext } from '../../store';
 import  { useContext } from 'react';
-import './styles.scss'; // Import the SCSS file
+import './styles.scss'; 
 
 export const ForecastBox: React.FC = () => {
   const { weatherData, formattedDates } = useContext(AppContext);
