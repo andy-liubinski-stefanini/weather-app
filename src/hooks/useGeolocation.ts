@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { ErrorContext } from '../store';
 import { geolocate, handleGeolocationError } from '../utils';
-import { Location } from './types';
+import type { Location } from '../types';
 
 export const useGeolocation = (): {
-  selectedLocation: Location,
-  handleGeolocate: () => Promise<void>, 
-  setSelectedLocation: React.Dispatch<React.SetStateAction<Location>>
+  selectedLocation: Location;
+  handleGeolocate: () => Promise<void>;
+  setSelectedLocation: React.Dispatch<React.SetStateAction<Location>>;
 } => {
   const { setError } = useContext(ErrorContext);
 
@@ -19,10 +19,10 @@ export const useGeolocation = (): {
     try {
       const location = await geolocate();
       setSelectedLocation({
-        latitude: location.latitude,
-        longitude: location.longitude,
+        latitude: location.latitude.toString(),
+        longitude: location.longitude.toString(),
       });
-      setError(null)
+      setError(null);
     } catch (error) {
       const errorMessage = handleGeolocationError(error);
       setError(errorMessage);

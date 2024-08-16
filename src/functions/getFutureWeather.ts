@@ -1,25 +1,15 @@
 import type { FutureWeather } from '../hooks/types';
 import { baseQuery } from '../services';
 import { createURL } from './';
-import type { Location, FutureWeatherResponse } from './types';
+import type { FutureWeatherResponse } from './types';
+import type { Location } from '../types';
 
 export const getFutureWeather = async (
   location: Location
 ): Promise<FutureWeather[]> => {
   const endpointType = import.meta.env.VITE_FORECAST_ENDPOINT;
-  const urlParams = {};
 
-  if (location.latitude) {
-    urlParams['lat'] = location.latitude;
-  }
-  if (location.longitude) {
-    urlParams['lon'] = location.longitude;
-  }
-  if (location.locationName) {
-    urlParams['city'] = location.locationName;
-  }
-
-  const endpoint = createURL(endpointType, urlParams);
+  const endpoint = createURL(endpointType, location);
 
   const response = await baseQuery<FutureWeatherResponse>(endpoint);
   const data = response.data;
