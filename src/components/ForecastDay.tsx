@@ -17,8 +17,10 @@ interface ForecastDayProps {
   formattedDate: FormattedDate;
 }
 
-
-export const ForecastDay: React.FC<ForecastDayProps> = ({ day, formattedDate }) => {
+export const ForecastDay: React.FC<ForecastDayProps> = ({
+  day,
+  formattedDate,
+}) => {
   const { isCelsius } = useContext(AppContext);
 
   const maxTempC = day ? day.maxTempC : null;
@@ -45,13 +47,16 @@ export const ForecastDay: React.FC<ForecastDayProps> = ({ day, formattedDate }) 
         {day ? formattedDate.formattedDate : `Loading...`}
       </div>
       <div className="day-forecast--icon icon">
-        {iconLink && <img className="icon--img" src={iconLink} alt="Weather icon" />}
+        {iconLink && (
+          <img className="icon--img" src={iconLink} alt="Weather icon" />
+        )}
       </div>
       <div className="day-forecast--description">
         {day ? day.description : `Loading...`}
       </div>
       <div className="day-forecast--temps">
-        Max: {day ? maxTempDisplay : `Loading...`} | Min: {day ? minTempDisplay : `Loading...`}
+        Max: {day ? maxTempDisplay : `Loading...`} | Min:{' '}
+        {day ? minTempDisplay : `Loading...`}
       </div>
     </div>
   );

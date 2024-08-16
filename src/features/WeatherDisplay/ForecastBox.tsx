@@ -1,7 +1,7 @@
 import { ForecastDay } from '../../components';
 import { AppContext } from '../../store';
-import  { useContext } from 'react';
-import './styles.scss'; 
+import { useContext } from 'react';
+import './styles.scss';
 
 export const ForecastBox: React.FC = () => {
   const { weatherData, formattedDates } = useContext(AppContext);
@@ -9,11 +9,11 @@ export const ForecastBox: React.FC = () => {
 
   return (
     <section className="main--forecast">
-      {forecast?.map((day, i) => (
+      {forecast?.map((day, index) => (
         <ForecastDay
-          key={`${day}-${i}`}
+          key={`${day}-${index}`}
           day={day}
-          formattedDate={formattedDates[i]}
+          formattedDate={formattedDates[index]}
         />
       ))}
     </section>

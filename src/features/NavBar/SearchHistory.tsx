@@ -16,8 +16,10 @@ export const SearchHistory: React.FC<SearchHistoryProps> = ({
 }) => {
   const { setSearchFieldVisible, setSelectedLocation } = useContext(AppContext);
 
-  const handleDeleteHistoryItem = (i: number) => () => {
-    const newHistory = searchHistory.filter((_, ii) => ii !== i);
+  const handleDeleteHistoryItem = (historyIndex: number) => () => {
+    const newHistory = searchHistory.filter(
+      (_, localStorageIndex) => localStorageIndex !== historyIndex
+    );
     setSearchHistory(newHistory);
     localStorage.setItem('searchHistory', JSON.stringify(newHistory));
   };
@@ -34,11 +36,11 @@ export const SearchHistory: React.FC<SearchHistoryProps> = ({
 
   return (
     <ul className={historyClass}>
-      {searchHistory.map((place, i) => (
+      {searchHistory.map((place, historyIndex) => (
         <SearchHistoryItem
           handleHistoryItem={handleHistoryItem}
-          handleDeleteHistoryItem={handleDeleteHistoryItem(i)}
-          key={`${place}-${i}`}
+          handleDeleteHistoryItem={handleDeleteHistoryItem(historyIndex)}
+          key={`${place}-${historyIndex}`}
           place={place}
         />
       ))}
