@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { AppContext } from '../../store';
 import { SearchHistoryItem } from '../../components';
-import './styles.scss'; 
+import './styles.scss';
 
 interface SearchHistoryProps {
   isInputFocused: boolean;
@@ -16,8 +16,8 @@ export const SearchHistory: React.FC<SearchHistoryProps> = ({
 }) => {
   const { setSearchFieldVisible, setSelectedLocation } = useContext(AppContext);
 
-  const handleDeleteHistoryItem = (i: number) => {
-    const newHistory = searchHistory.filter((place, ii) => ii !== i);
+  const handleDeleteHistoryItem = (i: number) => () => {
+    const newHistory = searchHistory.filter((_, ii) => ii !== i);
     setSearchHistory(newHistory);
     localStorage.setItem('searchHistory', JSON.stringify(newHistory));
   };
@@ -27,19 +27,19 @@ export const SearchHistory: React.FC<SearchHistoryProps> = ({
     setSearchFieldVisible(prevState => !prevState);
   };
 
-  const historyClass = isInputFocused && searchHistory.length > 0
-    ? 'search-box--history expanded'
-    : 'search-box--history collapsed';
+  const historyClass =
+    isInputFocused && searchHistory.length > 0
+      ? 'search-box--history expanded'
+      : 'search-box--history collapsed';
 
   return (
     <ul className={historyClass}>
       {searchHistory.map((place, i) => (
         <SearchHistoryItem
           handleHistoryItem={handleHistoryItem}
-          handleDeleteHistoryItem={handleDeleteHistoryItem}
+          handleDeleteHistoryItem={handleDeleteHistoryItem(i)}
           key={`${place}-${i}`}
           place={place}
-          i={i}
         />
       ))}
     </ul>

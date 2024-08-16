@@ -4,7 +4,6 @@ import { weatherService } from '../functions';
 import { Location, WeatherData } from './types';
 
 
-// TODO anys
 export const useWeatherData = (): {
   weatherData?: WeatherData; 
   fetchWeather: (location: Location) => Promise<void>;

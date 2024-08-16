@@ -1,17 +1,25 @@
 import { TodayWeather } from '../hooks/types';
 import { baseQuery } from '../services';
+import { createURL } from './';
 import { Location, TodayWeatherResponse } from './types';
 
-const apikey = import.meta.env.VITE_API_KEY;
+export const getTodayWeather = async (
+  location: Location
+): Promise<TodayWeather> => {
+  const endpointType = import.meta.env.VITE_CURRENT_ENDPOINT;
+  const urlParams = {};
 
-export const getTodayWeather = async (location: Location): Promise<TodayWeather> => {
-  let endpoint: string = ''
-  if (location.latitude && location.longitude) {
-    endpoint = `https://api.weatherbit.io/v2.0/current?lat=${location.latitude}&lon=${location.longitude}&key=${apikey}&include=minutely`;
+  if (location.latitude) {
+    urlParams['lat'] = location.latitude;
+  }
+  if (location.longitude) {
+    urlParams['lon'] = location.longitude;
   }
   if (location.locationName) {
-    endpoint = `https://api.weatherbit.io/v2.0/current?city=${location.locationName}&key=${apikey}&include=minutely`;
+    urlParams['city'] = location.locationName;
   }
+
+  const endpoint = createURL(endpointType, urlParams);
 
   const data = await baseQuery<TodayWeatherResponse>(endpoint);
   return {

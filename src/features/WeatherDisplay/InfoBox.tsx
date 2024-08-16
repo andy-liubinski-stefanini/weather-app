@@ -3,13 +3,10 @@ import { useContext } from 'react';
 import { TextWeatherExplanation } from '../WeatherToText';
 import { InformationItem } from '../../components';
 import { ErrorDisplay } from '../ErrorDisplay';
-import './styles.scss'; 
+import './styles.scss';
 
 export const InfoBox: React.FC = () => {
-  const {
-    weatherData,
-    isCelsius,
-  } = useContext(AppContext);
+  const { weatherData, isCelsius } = useContext(AppContext);
 
   const { error } = useContext(ErrorContext);
 
@@ -33,7 +30,7 @@ export const InfoBox: React.FC = () => {
           {weather && <img src={iconLink} alt="" />}
         </div>
         <div className="info-box--informations-box--temps">
-          {isCelsius ? temperatureC : temperatureF}
+          {isCelsius ? temperatureC : temperatureF}°
         </div>
 
         <InformationItem legend="Humidity:" info={weather && `${humidity}%`} />

@@ -3,25 +3,26 @@ import { CiCircleRemove } from 'react-icons/ci';
 
 interface SearchHistoryItemProps {
   handleHistoryItem: (place: string) => void;
-  handleDeleteHistoryItem: (index: number) => void;
+  handleDeleteHistoryItem: () => void;
   place: string;
-  i: number;
 }
 
 export const SearchHistoryItem: React.FC<SearchHistoryItemProps> = ({
   handleHistoryItem,
   handleDeleteHistoryItem,
   place,
-  i,
 }) => {
   return (
     <li className="history--item history-item">
-      <p onClick={() => handleHistoryItem(place)} className="history-item--text">
+      <p
+        onClick={() => handleHistoryItem(place)}
+        className="history-item--text"
+      >
         {place}
       </p>
       <button
         type="button"
-        onClick={() => handleDeleteHistoryItem(i)}
+        onClick={handleDeleteHistoryItem}
         className="history-item--button"
       >
         <CiCircleRemove className="history-item--icon font-bold" />
