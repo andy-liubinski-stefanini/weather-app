@@ -13,7 +13,7 @@ export function createURL(endpointType: string, location: Location): string {
   }
   if (location.locationName) {
     url.searchParams.append('city', location.locationName);
-    url.searchParams.append('include', 'minutely');
+    // url.searchParams.append('include', 'minutely');
   }
   url.searchParams.append('key', apiKey);
 

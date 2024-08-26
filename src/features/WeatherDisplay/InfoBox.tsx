@@ -4,9 +4,15 @@ import { TextWeatherExplanation } from '../WeatherToText';
 import { InformationItem } from '../../components';
 import { ErrorDisplay } from '../ErrorDisplay';
 import './styles.scss';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 export const InfoBox: React.FC = () => {
-  const { weatherData, isCelsius } = useContext(AppContext);
+  // const { weatherData, isCelsius } = useContext(AppContext);
+
+  const isCelsius = useSelector((state: RootState) => state.app.isCelsius);
+
+  const { weatherData } = useContext(AppContext);
 
   const { error } = useContext(ErrorContext);
 

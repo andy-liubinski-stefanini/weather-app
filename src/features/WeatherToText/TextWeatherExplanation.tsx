@@ -1,8 +1,14 @@
 import { AppContext } from '../../store';
 import { useContext } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 export const TextWeatherExplanation: React.FC = () => {
-  const { weatherData, isCelsius } = useContext(AppContext);
+  //const { weatherData, isCelsius } = useContext(AppContext);
+
+  const { weatherData } = useContext(AppContext);
+
+  const isCelsius = useSelector((state: RootState) => state.app.isCelsius);
 
   const weather = weatherData && weatherData[0] ? weatherData[0] : null;
   const temperatureC = weather ? weather.temperatureC : null;
