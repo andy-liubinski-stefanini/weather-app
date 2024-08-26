@@ -1,13 +1,16 @@
-/* eslint-disable react/prop-types */
 import { AppContext, ErrorContext } from '../../store';
 import { useContext } from 'react';
 import { TextWeatherExplanation } from '../WeatherToText';
 import { InformationItem } from '../../components';
 import { ErrorDisplay } from '../ErrorDisplay';
-import './styles.scss'; // Import the SCSS file
+import './styles.scss'; 
 
-export const InfoBox = () => {
-  const { weatherData, isCelsius } = useContext(AppContext);
+export const InfoBox: React.FC = () => {
+  const {
+    weatherData,
+    isCelsius,
+  } = useContext(AppContext);
+
   const { error } = useContext(ErrorContext);
 
   const weather = weatherData?.[0] ?? null;
@@ -21,7 +24,7 @@ export const InfoBox = () => {
   const uvIndex = weather ? weather.uvIndex : 'N/A';
   const iconLink = weather
     ? `https://cdn.weatherbit.io/static/img/icons/${weather.icon}.png`
-    : null;
+    : '';
 
   return (
     <section className="main--info-box">

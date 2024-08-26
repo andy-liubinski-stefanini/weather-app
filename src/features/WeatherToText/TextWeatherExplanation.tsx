@@ -1,7 +1,7 @@
 import { AppContext } from '../../store';
 import { useContext } from 'react';
 
-export const TextWeatherExplanation = () => {
+export const TextWeatherExplanation: React.FC = () => {
   const { weatherData, isCelsius } = useContext(AppContext);
 
   const weather = weatherData && weatherData[0] ? weatherData[0] : null;

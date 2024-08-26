@@ -1,7 +1,24 @@
-/* eslint-disable react/prop-types */
 import { AppContext } from '../store';
 import { useContext } from 'react';
-export const ForecastDay = ({ day, formattedDate }) => {
+
+interface Day {
+  maxTempC: number;
+  minTempC: number;
+  description: string;
+  icon: string;
+}
+
+interface FormattedDate {
+  formattedDate: string;
+}
+
+interface ForecastDayProps {
+  day: Day | null;
+  formattedDate: FormattedDate;
+}
+
+
+export const ForecastDay: React.FC<ForecastDayProps> = ({ day, formattedDate }) => {
   const { isCelsius } = useContext(AppContext);
 
   const maxTempC = day ? day.maxTempC : null;
@@ -25,17 +42,16 @@ export const ForecastDay = ({ day, formattedDate }) => {
   return (
     <div className="forecast-box--day day-forecast">
       <div className="day-forecast--day">
-        {day ? `${formattedDate.formattedDate}` : `Loading...`}
+        {day ? formattedDate.formattedDate : `Loading...`}
       </div>
       <div className="day-forecast--icon icon">
-        <img className="icon--img" src={iconLink} alt="Weather icon" />
+        {iconLink && <img className="icon--img" src={iconLink} alt="Weather icon" />}
       </div>
       <div className="day-forecast--description">
-        {day ? `${day.description}` : `Loading...`}
+        {day ? day.description : `Loading...`}
       </div>
       <div className="day-forecast--temps">
-        Max:{day ? maxTempDisplay : `Loading...`} | Min:
-        {day ? minTempDisplay : `Loading...`}
+        Max: {day ? maxTempDisplay : `Loading...`} | Min: {day ? minTempDisplay : `Loading...`}
       </div>
     </div>
   );

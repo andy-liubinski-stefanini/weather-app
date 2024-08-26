@@ -1,9 +1,9 @@
 import { CiLocationOn, CiMap } from 'react-icons/ci';
 import { useContext } from 'react';
 import { AppContext } from '../../store';
-import './styles.scss'; // Import the SCSS file
+import './styles.scss'; 
 
-export const Navigation = () => {
+export const Navigation: React.FC = () => {
   const { handleSearchButton, handleGeolocate, handleUnitToggle, isCelsius } =
     useContext(AppContext);
 

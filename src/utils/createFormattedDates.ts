@@ -1,6 +1,12 @@
 import { add, format } from 'date-fns';
 
-const createOneDay = days => {
+
+interface FormattedDate {
+  formattedDate: string,
+  formattedWeekday: string
+}
+
+const createOneDay = (days: number): FormattedDate => {
   const futureDay = add(new Date(), { days });
 
   return {
@@ -9,8 +15,8 @@ const createOneDay = days => {
   };
 };
 
-export const createFormattedDates = () => {
-  const formattedDates = [];
+export const createFormattedDates = (): FormattedDate[] => {
+  const formattedDates: FormattedDate[] = [];
   for (let i = 0; i < 5; i++) {
     formattedDates.push(createOneDay(i));
   }

@@ -1,10 +1,9 @@
-/* eslint-disable react/prop-types */
 import { ForecastDay } from '../../components';
 import { AppContext } from '../../store';
-import { useContext } from 'react';
-import './styles.scss'; // Import the SCSS file
+import  { useContext } from 'react';
+import './styles.scss'; 
 
-export const ForecastBox = () => {
+export const ForecastBox: React.FC = () => {
   const { weatherData, formattedDates } = useContext(AppContext);
   const forecast = weatherData && weatherData[1] ? weatherData[1] : null;
 

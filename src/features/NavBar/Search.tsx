@@ -2,18 +2,22 @@ import { CiSearch } from 'react-icons/ci';
 import { AppContext } from '../../store';
 import { SearchHistory } from '.';
 import { useEffect, useContext, useRef, useState } from 'react';
-import './styles.scss'; // Import the SCSS file
+import './styles.scss'; 
 
-export const Search = () => {
+
+
+
+export const Search: React.FC = () => {
   const { searchFieldVisible, setSearchFieldVisible, setSelectedLocation } =
     useContext(AppContext);
-  const inputRef = useRef(null);
-  const [searchHistory, setSearchHistory] = useState([]);
-  const [isInputFocused, setIsInputFocused] = useState(false);
 
-  const handleSearchSubmit = evt => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [searchHistory, setSearchHistory] = useState<string[]>([]);
+  const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
+
+  const handleSearchSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const inputValue = inputRef.current.value.trim();
+    const inputValue = inputRef.current?.value.trim();
     if (inputValue) {
       const newHistory = [
         inputValue,
@@ -23,13 +27,15 @@ export const Search = () => {
       localStorage.setItem('searchHistory', JSON.stringify(newHistory));
       setSelectedLocation({ locationName: inputValue });
       setSearchFieldVisible(prevState => !prevState);
-      inputRef.current.value = '';
+      if (inputRef.current) {
+        inputRef.current.value = '';
+      }
     }
   };
 
   useEffect(() => {
     if (searchFieldVisible) {
-      inputRef.current.focus();
+      inputRef.current?.focus();
     }
   }, [searchFieldVisible]);
 
