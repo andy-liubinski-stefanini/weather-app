@@ -4,7 +4,10 @@ import { AppContext } from '../../store';
 import './styles.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store';
-import { toggleIsCelsius } from '../../store/appSlice';
+import {
+  toggleIsCelsius,
+  toggleSearchFieldVisible,
+} from '../../store/appSlice';
 
 export const Navigation: React.FC = () => {
   const dispatch = useDispatch();
@@ -18,7 +21,11 @@ export const Navigation: React.FC = () => {
 
   const isCelsius = useSelector((state: RootState) => state.app.isCelsius);
 
-  const { handleSearchButton, handleGeolocate } = useContext(AppContext);
+  const handleSearchButton = () => {
+    dispatch(toggleSearchFieldVisible());
+  };
+
+  const { handleGeolocate } = useContext(AppContext);
 
   return (
     <nav className="city--navigation_box">

@@ -2,6 +2,9 @@ import { useContext } from 'react';
 import { AppContext } from '../../store';
 import { SearchHistoryItem } from '../../components';
 import './styles.scss';
+import { useDispatch } from 'react-redux';
+import { RootState } from '../../store';
+import { toggleSearchFieldVisible } from '../../store/appSlice';
 
 interface SearchHistoryProps {
   isInputFocused: boolean;
@@ -14,7 +17,13 @@ export const SearchHistory: React.FC<SearchHistoryProps> = ({
   searchHistory,
   setSearchHistory,
 }) => {
-  const { setSearchFieldVisible, setSelectedLocation } = useContext(AppContext);
+  const { setSelectedLocation } = useContext(AppContext);
+  const dispatch = useDispatch();
+  const handleToggleSearchFieldVisibility = () => {
+    dispatch(toggleSearchFieldVisible());
+  };
+
+  // const { setSearchFieldVisible, setSelectedLocation } = useContext(AppContext);
 
   const handleDeleteHistoryItem = (historyIndex: number) => () => {
     const newHistory = searchHistory.filter(
@@ -26,7 +35,8 @@ export const SearchHistory: React.FC<SearchHistoryProps> = ({
 
   const handleHistoryItem = (place: string) => {
     setSelectedLocation({ locationName: place });
-    setSearchFieldVisible(prevState => !prevState);
+    handleToggleSearchFieldVisibility();
+    // setSearchFieldVisible(prevState => !prevState);
   };
 
   const historyClass =

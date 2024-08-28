@@ -2,14 +2,24 @@ import { CiSearch } from 'react-icons/ci';
 import { AppContext } from '../../store';
 import { SearchHistory } from '.';
 import { useEffect, useContext, useRef, useState } from 'react';
-import './styles.scss'; 
-
-
-
+import './styles.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../store';
+import { toggleSearchFieldVisible } from '../../store/appSlice';
 
 export const Search: React.FC = () => {
-  const { searchFieldVisible, setSearchFieldVisible, setSelectedLocation } =
-    useContext(AppContext);
+  const { setSelectedLocation } = useContext(AppContext);
+  const dispatch = useDispatch();
+  // const { searchFieldVisible, setSearchFieldVisible, setSelectedLocation } =
+  //   useContext(AppContext);
+
+  const searchFieldVisible = useSelector(
+    (state: RootState) => state.app.searchFieldVisible
+  );
+
+  const handleToggleSearchFieldVisibility = () => {
+    dispatch(toggleSearchFieldVisible());
+  };
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
@@ -26,7 +36,7 @@ export const Search: React.FC = () => {
       setSearchHistory(newHistory);
       localStorage.setItem('searchHistory', JSON.stringify(newHistory));
       setSelectedLocation({ locationName: inputValue });
-      setSearchFieldVisible(prevState => !prevState);
+      handleToggleSearchFieldVisibility();
       if (inputRef.current) {
         inputRef.current.value = '';
       }
@@ -50,7 +60,7 @@ export const Search: React.FC = () => {
     <form
       hidden={!searchFieldVisible}
       onSubmit={handleSearchSubmit}
-      className='city_box--search search-box'
+      className="city_box--search search-box"
     >
       <div className="search-box--wrapper">
         <input
