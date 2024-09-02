@@ -1,4 +1,3 @@
-// Define the types for the geolocation response
 export interface GeolocationPosition {
   coords: {
     latitude: number;

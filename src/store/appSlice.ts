@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-// import type { Location } from '../types';
 import { FormattedDate } from '../utils/createFormattedDates';
 import type { WeatherData } from '../hooks/types';
 

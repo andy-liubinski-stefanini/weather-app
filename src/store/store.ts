@@ -1,4 +1,3 @@
-// src/store/index.ts
 import { configureStore } from '@reduxjs/toolkit';
 import appReducer from './appSlice';
 import errorReducer from './errorSlice';

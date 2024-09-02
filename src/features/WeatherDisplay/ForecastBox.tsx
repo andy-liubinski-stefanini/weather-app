@@ -1,7 +1,6 @@
 import { ForecastDay } from '../../components';
 import './styles.scss';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
 import { selectWeatherData, selectFormattedDates } from '../../store/appSlice';
 
 export const ForecastBox: React.FC = () => {
