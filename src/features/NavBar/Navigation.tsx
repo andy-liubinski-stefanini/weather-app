@@ -1,7 +1,7 @@
 import { CiLocationOn, CiMap } from 'react-icons/ci';
 import { useContext } from 'react';
 import { AppContext } from '../../store';
-import './styles.scss'; 
+import './styles.scss';
 
 export const Navigation: React.FC = () => {
   const { handleSearchButton, handleGeolocate, handleUnitToggle, isCelsius } =
@@ -9,13 +9,25 @@ export const Navigation: React.FC = () => {
 
   return (
     <nav className="city--navigation_box">
-      <button onClick={handleGeolocate} className="city--navigation_box--geolocate">
+      <button
+        title="Local weather"
+        onClick={handleGeolocate}
+        className="city--navigation_box--geolocate"
+      >
         <CiLocationOn />
       </button>
-      <button onClick={handleSearchButton} className="city--navigation_box--search">
+      <button
+        title="Search a city"
+        onClick={handleSearchButton}
+        className="city--navigation_box--search"
+      >
         <CiMap />
       </button>
-      <button onClick={handleUnitToggle} className="city--navigation_box--toggle_unit">
+      <button
+        title={isCelsius ? 'Show in fahrenheit' : 'Show in degrees centigrade'}
+        onClick={handleUnitToggle}
+        className="city--navigation_box--toggle_unit"
+      >
         {isCelsius ? 'C°' : 'F°'}
       </button>
     </nav>
