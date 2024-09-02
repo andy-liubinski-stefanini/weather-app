@@ -1,11 +1,9 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
 import './styles.scss';
+import { selectError } from '../../store/errorSlice';
 
 export const ErrorDisplay: React.FC = () => {
-  const error: string | undefined = useSelector(
-    (state: RootState) => state.error.error
-  );
+  const error = useSelector(selectError);
   if (!error) return null;
   return <p className="error-message">{error}</p>;
 };

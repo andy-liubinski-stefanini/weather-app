@@ -30,7 +30,7 @@ export const Navigation: React.FC = () => {
       const weather = await weatherService(coordinates);
       dispatch(setWeatherData(weather));
     } catch (error) {
-      dispatch(setError(error?.toString()));
+      dispatch(setError((error as Error).toString()));
     }
   }
 

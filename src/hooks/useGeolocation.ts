@@ -1,7 +1,7 @@
 import { geolocate, handleGeolocationError } from '../utils';
 import { useDispatch } from 'react-redux';
 import { setCoordinates } from '../store/appSlice';
-import { setError } from '../store/errorSlice';
+import { setError, clearError } from '../store/errorSlice';
 
 export const useGeolocation = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export const useGeolocation = () => {
           longitude: location.longitude.toString(),
         })
       );
-      dispatch(setError(undefined));
+      dispatch(clearError());
     } catch (error: unknown) {
       const errorMessage = handleGeolocationError(
         error as GeolocationPositionError

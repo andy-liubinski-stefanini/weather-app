@@ -18,7 +18,7 @@ export const SearchHistory: React.FC<SearchHistoryProps> = ({
 }) => {
   const dispatch = useDispatch();
   const handleToggleSearchFieldVisibility = () => {
-    dispatch(toggleSearchFieldVisible(undefined));
+    dispatch(toggleSearchFieldVisible());
   };
 
   const handleDeleteHistoryItem = (historyIndex: number) => () => {

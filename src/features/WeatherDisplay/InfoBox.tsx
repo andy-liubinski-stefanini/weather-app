@@ -1,17 +1,15 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
 import { TextWeatherExplanation } from '../WeatherToText';
 import { InformationItem } from '../../components';
 import { ErrorDisplay } from '../ErrorDisplay';
 import './styles.scss';
 import { selectIsCelsius, selectWeatherData } from '../../store/appSlice';
+import { selectError } from '../../store/errorSlice';
 
 export const InfoBox: React.FC = () => {
   const isCelsius = useSelector(selectIsCelsius);
   const weatherData = useSelector(selectWeatherData);
-  const error: string | undefined = useSelector(
-    (state: RootState) => state.error.error
-  );
+  const error = useSelector(selectError);
   const weather = weatherData?.[0] ?? null;
 
   const temperatureC = weather ? weather.temperatureC : 'N/A';

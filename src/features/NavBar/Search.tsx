@@ -3,7 +3,7 @@ import { SearchHistory } from '.';
 import { useEffect, useRef, useState } from 'react';
 import './styles.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { setError } from '../../store/errorSlice';
+import { setError, clearError } from '../../store/errorSlice';
 import {
   toggleSearchFieldVisible,
   setWeatherData,
@@ -24,9 +24,9 @@ export const Search: React.FC = () => {
     try {
       const weather = await weatherService({ locationName: location });
       dispatch(setWeatherData(weather));
-      dispatch(setError(undefined));
+      dispatch(clearError());
     } catch (error) {
-      dispatch(setError(error?.toString()));
+      dispatch(setError((error as Error).toString()));
     }
   }
 
