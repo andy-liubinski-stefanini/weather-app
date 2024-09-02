@@ -1,29 +1,25 @@
-import { useContext } from 'react';
-import { AppContext } from '../../store';
 import { SearchHistoryItem } from '../../components';
 import './styles.scss';
 import { useDispatch } from 'react-redux';
-import { RootState } from '../../store';
 import { toggleSearchFieldVisible } from '../../store/appSlice';
 
 interface SearchHistoryProps {
+  handleGetCityWeather: (place: string) => void;
   isInputFocused: boolean;
   searchHistory: string[];
   setSearchHistory: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 export const SearchHistory: React.FC<SearchHistoryProps> = ({
+  handleGetCityWeather,
   isInputFocused,
   searchHistory,
   setSearchHistory,
 }) => {
-  const { setSelectedLocation } = useContext(AppContext);
   const dispatch = useDispatch();
   const handleToggleSearchFieldVisibility = () => {
-    dispatch(toggleSearchFieldVisible());
+    dispatch(toggleSearchFieldVisible(undefined));
   };
-
-  // const { setSearchFieldVisible, setSelectedLocation } = useContext(AppContext);
 
   const handleDeleteHistoryItem = (historyIndex: number) => () => {
     const newHistory = searchHistory.filter(
@@ -34,9 +30,8 @@ export const SearchHistory: React.FC<SearchHistoryProps> = ({
   };
 
   const handleHistoryItem = (place: string) => {
-    setSelectedLocation({ locationName: place });
+    handleGetCityWeather(place);
     handleToggleSearchFieldVisibility();
-    // setSearchFieldVisible(prevState => !prevState);
   };
 
   const historyClass =

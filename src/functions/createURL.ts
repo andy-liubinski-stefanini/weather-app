@@ -1,6 +1,4 @@
-import type { Location } from '../types';
-
-export function createURL(endpointType: string, location: Location): string {
+export function createURL(endpointType: string, location): string {
   const baseURL = import.meta.env.VITE_BASE_URL;
   const apiKey = import.meta.env.VITE_API_KEY;
   const url = new URL(`${endpointType}`, baseURL);

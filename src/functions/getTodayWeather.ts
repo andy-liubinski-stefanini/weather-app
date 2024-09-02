@@ -2,10 +2,10 @@ import { TodayWeather } from '../hooks/types';
 import { baseQuery } from '../services';
 import { createURL } from './';
 import type { TodayWeatherResponse } from './types';
-import type { Location } from '../types';
+import type { Coordinates, LocationName } from '../types';
 
 export const getTodayWeather = async (
-  location: Location
+  location: LocationName | Coordinates
 ): Promise<TodayWeather> => {
   const endpointType = import.meta.env.VITE_CURRENT_ENDPOINT;
 

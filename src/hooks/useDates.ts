@@ -1,18 +1,19 @@
-import { useState, useEffect } from 'react';
 import { createFormattedDates } from '../utils';
+import { useDispatch } from 'react-redux';
+// import { RootState } from '../../store';
+import { setFormattedDates } from '../store/appSlice';
 
-interface FormattedDate {
-  formattedDate: string;
-  formattedWeekday: string;
-}
+// interface FormattedDate {
+//   formattedDate: string;
+//   formattedWeekday: string;
+// }
 
-export const useDates = (): { formattedDates: FormattedDate[] } => {
-  const [formattedDates, setFormattedDates] = useState<FormattedDate[]>([]);
+export const useDates = () => {
+  const dates = createFormattedDates();
+  // const [formattedDates, setFormattedDates] = useState<FormattedDate[]>([]);
 
-  useEffect(() => {
-    const dates = createFormattedDates();
-    setFormattedDates(dates);
-  }, []);
+  const dispatch = useDispatch();
+  dispatch(setFormattedDates(dates));
 
-  return { formattedDates };
+  //  return { formattedDates };
 };

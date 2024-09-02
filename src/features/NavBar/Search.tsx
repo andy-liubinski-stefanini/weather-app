@@ -1,25 +1,34 @@
 import { CiSearch } from 'react-icons/ci';
-import { AppContext } from '../../store';
 import { SearchHistory } from '.';
-import { useEffect, useContext, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './styles.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store';
-import { toggleSearchFieldVisible } from '../../store/appSlice';
+import { setError } from '../../store/errorSlice';
+import {
+  toggleSearchFieldVisible,
+  setWeatherData,
+  selectSearchFieldVisible,
+} from '../../store/appSlice';
+import { weatherService } from '../../functions';
 
 export const Search: React.FC = () => {
-  const { setSelectedLocation } = useContext(AppContext);
   const dispatch = useDispatch();
-  // const { searchFieldVisible, setSearchFieldVisible, setSelectedLocation } =
-  //   useContext(AppContext);
 
-  const searchFieldVisible = useSelector(
-    (state: RootState) => state.app.searchFieldVisible
-  );
+  const searchFieldVisible = useSelector(selectSearchFieldVisible);
 
   const handleToggleSearchFieldVisibility = () => {
     dispatch(toggleSearchFieldVisible());
   };
+
+  async function handleGetCityWeather(location: string) {
+    try {
+      const weather = await weatherService({ locationName: location });
+      dispatch(setWeatherData(weather));
+      dispatch(setError(undefined));
+    } catch (error) {
+      dispatch(setError(error?.toString()));
+    }
+  }
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
@@ -35,11 +44,11 @@ export const Search: React.FC = () => {
       ].slice(0, 5);
       setSearchHistory(newHistory);
       localStorage.setItem('searchHistory', JSON.stringify(newHistory));
-      setSelectedLocation({ locationName: inputValue });
       handleToggleSearchFieldVisibility();
       if (inputRef.current) {
         inputRef.current.value = '';
       }
+      handleGetCityWeather(inputValue);
     }
   };
 
@@ -72,6 +81,7 @@ export const Search: React.FC = () => {
           className="search-box--input"
         />
         <SearchHistory
+          handleGetCityWeather={place => handleGetCityWeather(place)}
           isInputFocused={isInputFocused}
           searchHistory={searchHistory}
           setSearchHistory={setSearchHistory}

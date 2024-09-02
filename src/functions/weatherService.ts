@@ -1,10 +1,10 @@
 import type { WeatherData } from '../hooks/types';
 import { getTodayWeather } from './';
 import { getFutureWeather } from './';
-import type { Location } from '../types';
+import type { Coordinates, LocationName } from '../types';
 
 export const weatherService = async (
-  location: Location
+  location: LocationName | Coordinates
 ): Promise<WeatherData> => {
   const todayWeather = await getTodayWeather(location);
   const forecastWeather = await getFutureWeather(location);

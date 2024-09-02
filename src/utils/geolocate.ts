@@ -1,19 +1,23 @@
 // Define the types for the geolocation response
-interface GeolocationPosition {
+export interface GeolocationPosition {
   coords: {
     latitude: number;
     longitude: number;
   };
 }
 
-export const geolocate = (): Promise<{ latitude: number; longitude: number }> => {
+export const geolocate = (): Promise<{
+  latitude: number;
+  longitude: number;
+}> => {
   return new Promise((resolve, reject) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        (position: GeolocationPosition) => resolve({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        }),
+        (position: GeolocationPosition) =>
+          resolve({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          }),
         reject
       );
     } else {
@@ -22,7 +26,9 @@ export const geolocate = (): Promise<{ latitude: number; longitude: number }> =>
   });
 };
 
-export const handleGeolocationError = (error: GeolocationPositionError): string => {
+export const handleGeolocationError = (
+  error: GeolocationPositionError
+): string => {
   switch (error.code) {
     case error.PERMISSION_DENIED:
       return 'User denied the request for Geolocation.';

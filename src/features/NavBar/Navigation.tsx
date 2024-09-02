@@ -1,36 +1,43 @@
 import { CiLocationOn, CiMap } from 'react-icons/ci';
-import { useContext } from 'react';
-import { AppContext } from '../../store';
 import './styles.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store';
+import { setError } from '../../store/errorSlice';
 import {
   toggleIsCelsius,
   toggleSearchFieldVisible,
+  setWeatherData,
+  selectIsCelsius,
+  selectCoordinates,
 } from '../../store/appSlice';
+import { weatherService } from '../../functions';
+import type { Coordinates } from '../../types';
 
 export const Navigation: React.FC = () => {
   const dispatch = useDispatch();
-
-  // const { handleSearchButton, handleGeolocate, handleUnitToggle, isCelsius } =
-  //   useContext(AppContext);
-
   const handleUnitToggle = () => {
     dispatch(toggleIsCelsius());
   };
 
-  const isCelsius = useSelector((state: RootState) => state.app.isCelsius);
+  const isCelsius = useSelector(selectIsCelsius);
+  const coordinates: Coordinates = useSelector(selectCoordinates);
 
   const handleSearchButton = () => {
     dispatch(toggleSearchFieldVisible());
   };
 
-  const { handleGeolocate } = useContext(AppContext);
+  async function handleGetLocalWeather() {
+    try {
+      const weather = await weatherService(coordinates);
+      dispatch(setWeatherData(weather));
+    } catch (error) {
+      dispatch(setError(error?.toString()));
+    }
+  }
 
   return (
     <nav className="city--navigation_box">
       <button
-        onClick={handleGeolocate}
+        onClick={handleGetLocalWeather}
         className="city--navigation_box--geolocate"
       >
         <CiLocationOn />

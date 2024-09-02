@@ -1,10 +1,13 @@
 import { ForecastDay } from '../../components';
-import { AppContext } from '../../store';
-import { useContext } from 'react';
 import './styles.scss';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { selectWeatherData, selectFormattedDates } from '../../store/appSlice';
 
 export const ForecastBox: React.FC = () => {
-  const { weatherData, formattedDates } = useContext(AppContext);
+  const weatherData = useSelector(selectWeatherData);
+  const formattedDates = useSelector(selectFormattedDates);
+
   const forecast = weatherData && weatherData[1] ? weatherData[1] : null;
 
   return (

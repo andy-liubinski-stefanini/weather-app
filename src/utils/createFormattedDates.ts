@@ -1,9 +1,8 @@
 import { add, format } from 'date-fns';
 
-
-interface FormattedDate {
-  formattedDate: string,
-  formattedWeekday: string
+export interface FormattedDate {
+  formattedDate: string;
+  formattedWeekday: string;
 }
 
 const createOneDay = (days: number): FormattedDate => {

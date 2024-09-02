@@ -1,18 +1,17 @@
 import { Navigation, Search } from '../NavBar';
-import { AppContext } from '../../store';
-import { useContext } from 'react';
+
 import './styles.scss';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import {
+  selectSearchFieldVisible,
+  selectWeatherData,
+  selectFormattedDates,
+} from '../../store/appSlice';
 
 export const CitySection: React.FC = () => {
-  const { weatherData, formattedDates } = useContext(AppContext);
-  // const { searchFieldVisible, weatherData, formattedDates } =
-  //   useContext(AppContext);
-
-  const searchFieldVisible = useSelector(
-    (state: RootState) => state.app.searchFieldVisible
-  );
+  const weatherData = useSelector(selectWeatherData);
+  const formattedDates = useSelector(selectFormattedDates);
+  const searchFieldVisible: boolean = useSelector(selectSearchFieldVisible);
 
   const weather = weatherData?.[0] ?? null;
   const cityCountry = weather

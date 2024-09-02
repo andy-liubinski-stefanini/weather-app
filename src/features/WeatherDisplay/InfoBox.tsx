@@ -1,27 +1,23 @@
-import { AppContext, ErrorContext } from '../../store';
-import { useContext } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 import { TextWeatherExplanation } from '../WeatherToText';
 import { InformationItem } from '../../components';
 import { ErrorDisplay } from '../ErrorDisplay';
 import './styles.scss';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { selectIsCelsius, selectWeatherData } from '../../store/appSlice';
 
 export const InfoBox: React.FC = () => {
-  // const { weatherData, isCelsius } = useContext(AppContext);
-
-  const isCelsius = useSelector((state: RootState) => state.app.isCelsius);
-
-  const { weatherData } = useContext(AppContext);
-
-  const { error } = useContext(ErrorContext);
-
+  const isCelsius = useSelector(selectIsCelsius);
+  const weatherData = useSelector(selectWeatherData);
+  const error: string | undefined = useSelector(
+    (state: RootState) => state.error.error
+  );
   const weather = weatherData?.[0] ?? null;
 
-  const temperatureC = weather ? weather.temperatureC : 'N/A°';
+  const temperatureC = weather ? weather.temperatureC : 'N/A';
   const temperatureF = weather
     ? Math.floor((9 / 5) * Number(temperatureC) + 32)
-    : 'N/A°';
+    : 'N/A';
   const humidity = weather ? weather.humidity : 'N/A';
   const airQuality = weather ? weather.airQuality : 'N/A';
   const uvIndex = weather ? weather.uvIndex : 'N/A';

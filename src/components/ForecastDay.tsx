@@ -1,8 +1,5 @@
-// import { AppContext } from '../store';
-// import { useContext } from 'react';
-// import { store } from '../store';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store';
+import { selectIsCelsius } from '../store/appSlice';
 
 interface Day {
   maxTempC: number;
@@ -24,9 +21,7 @@ export const ForecastDay: React.FC<ForecastDayProps> = ({
   day,
   formattedDate,
 }) => {
-  // const { isCelsius } = useContext(AppContext);
-
-  const isCelsius = useSelector((state: RootState) => state.app.isCelsius);
+  const isCelsius: boolean = useSelector(selectIsCelsius);
 
   const maxTempC = day ? day.maxTempC : null;
   const minTempC = day ? day.minTempC : null;
