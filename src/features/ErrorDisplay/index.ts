@@ -1,1 +1,1 @@
-export { ErrorDisplay } from './ErrorDisplay.tsx';
+export { ErrorDisplay } from './ErrorDisplay';

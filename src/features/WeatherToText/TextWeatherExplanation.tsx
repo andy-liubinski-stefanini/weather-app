@@ -1,14 +1,14 @@
-import { AppContext } from '../../store';
-import { useContext } from 'react';
+import { selectWeatherData, selectIsCelsius } from '../../store/appSlice';
+import { useAppSelector } from '../../store/store';
 
 export const TextWeatherExplanation: React.FC = () => {
-  const { weatherData, isCelsius } = useContext(AppContext);
+  const weatherData = useAppSelector(selectWeatherData);
+
+  const isCelsius: boolean = useAppSelector(selectIsCelsius);
 
   const weather = weatherData && weatherData[0] ? weatherData[0] : null;
   const temperatureC = weather ? weather.temperatureC : null;
-  const temperatureF = temperatureC
-    ? Math.floor((9 / 5) * Number(temperatureC) + 32)
-    : null;
+  const temperatureF = temperatureC ? Math.floor((9 / 5) * Number(temperatureC) + 32) : null;
   const description = weather ? weather.description : null;
   const humidity = weather ? weather.humidity : null;
   const windSpeed = weather ? weather.windSpeed : null;
@@ -29,12 +29,9 @@ export const TextWeatherExplanation: React.FC = () => {
     wear = 'a heavy jacket';
   }
 
-  const welcomeText =
-    'Please press geolocate button to see the local weather or map button to see weather for any city in the world.';
+  const welcomeText = 'Please press geolocate button to see the local weather or map button to see weather for any city in the world.';
 
-  const text = `It is currently ${
-    isCelsius ? temperatureC : temperatureF
-  }° with ${description ? description.toLowerCase() : `N/A`}, humidity of ${
+  const text = `It is currently ${isCelsius ? temperatureC : temperatureF}° with ${description ? description.toLowerCase() : `N/A`}, humidity of ${
     humidity ? humidity : `N/A`
   }% and wind speed of ${windSpeed} m/s. Wear ${wear}.`;
 

@@ -1,10 +1,12 @@
 import { Navigation, Search } from '../NavBar';
-import { AppContext } from '../../store';
-import { useContext } from 'react';
+import { useAppSelector } from '../../store/store';
 import './styles.scss';
+import { selectSearchFieldVisible, selectWeatherData, selectFormattedDates } from '../../store/appSlice';
 
 export const CitySection: React.FC = () => {
-  const { searchFieldVisible, weatherData, formattedDates } = useContext(AppContext);
+  const weatherData = useAppSelector(selectWeatherData);
+  const formattedDates = useAppSelector(selectFormattedDates);
+  const searchFieldVisible: boolean = useAppSelector(selectSearchFieldVisible);
 
   const weather = weatherData?.[0] ?? null;
   const cityCountry = weather ? `${weather.cityName}, ${weather.countryCode}` : 'Loading...';
