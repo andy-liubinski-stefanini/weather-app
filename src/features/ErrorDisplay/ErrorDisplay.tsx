@@ -1,9 +1,9 @@
-import { useContext } from 'react';
-import { ErrorContext } from '../../store';
-import './styles.scss'
+import './styles.scss';
+import { selectError } from '../../store/errorSlice';
+import { useAppSelector } from '../../store/store';
 
 export const ErrorDisplay: React.FC = () => {
-  const { error } = useContext(ErrorContext);
+  const error = useAppSelector(selectError);
   if (!error) return null;
   return <p className="error-message">{error}</p>;
 };

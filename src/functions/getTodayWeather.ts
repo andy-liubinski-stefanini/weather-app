@@ -1,17 +1,29 @@
-import { TodayWeather } from '../hooks/types';
+import { TodayWeather } from '../types';
 import { baseQuery } from '../services';
-import { Location, TodayWeatherResponse } from './types';
+import { createURL } from './';
+import type { Coordinates, LocationName } from '../types';
 
-const apikey = import.meta.env.VITE_API_KEY;
+export interface TodayWeatherData {
+  city_name: string;
+  country_code: string;
+  temp: number;
+  uv: number;
+  aqi: number;
+  rh: number;
+  wind_spd: number;
+  weather: {
+    description: string;
+    icon: string;
+  };
+}
+export interface TodayWeatherResponse {
+  data: TodayWeatherData[];
+}
 
-export const getTodayWeather = async (location: Location): Promise<TodayWeather> => {
-  let endpoint: string = ''
-  if (location.latitude && location.longitude) {
-    endpoint = `https://api.weatherbit.io/v2.0/current?lat=${location.latitude}&lon=${location.longitude}&key=${apikey}&include=minutely`;
-  }
-  if (location.locationName) {
-    endpoint = `https://api.weatherbit.io/v2.0/current?city=${location.locationName}&key=${apikey}&include=minutely`;
-  }
+export const getTodayWeather = async (location: LocationName | Coordinates): Promise<TodayWeather> => {
+  const endpointType = import.meta.env.VITE_CURRENT_ENDPOINT;
+
+  const endpoint = createURL(endpointType, location);
 
   const data = await baseQuery<TodayWeatherResponse>(endpoint);
   return {

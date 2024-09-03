@@ -1,3 +1,3 @@
-export { ForecastDay } from './ForecastDay.tsx';
-export { InformationItem } from './InformationItem.tsx';
-export { SearchHistoryItem } from './SearchHistoryItem.tsx';
+export { ForecastDay } from './ForecastDay';
+export { InformationItem } from './InformationItem';
+export { SearchHistoryItem } from './SearchHistoryItem';
