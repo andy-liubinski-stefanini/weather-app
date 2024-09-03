@@ -1,9 +1,9 @@
-import { useSelector } from 'react-redux';
 import './styles.scss';
 import { selectError } from '../../store/errorSlice';
+import { useAppSelector } from '../../store/store';
 
 export const ErrorDisplay: React.FC = () => {
-  const error = useSelector(selectError);
+  const error = useAppSelector(selectError);
   if (!error) return null;
   return <p className="error-message">{error}</p>;
 };

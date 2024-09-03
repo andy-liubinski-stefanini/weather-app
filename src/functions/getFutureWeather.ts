@@ -1,12 +1,23 @@
-import type { FutureWeather } from '../hooks/types';
+import type { FutureWeather } from '../types';
 import { baseQuery } from '../services';
 import { createURL } from './';
-import type { FutureWeatherResponse } from './types';
 import type { Coordinates, LocationName } from '../types';
 
-export const getFutureWeather = async (
-  location: LocationName | Coordinates
-): Promise<FutureWeather[]> => {
+export interface FutureWeatherData {
+  datetime: string;
+  max_temp: number;
+  min_temp: number;
+  weather: {
+    description: string;
+    icon: string;
+  };
+}
+
+export interface FutureWeatherResponse {
+  data: FutureWeatherData[];
+}
+
+export const getFutureWeather = async (location: LocationName | Coordinates): Promise<FutureWeather[]> => {
   const endpointType = import.meta.env.VITE_FORECAST_ENDPOINT;
 
   const endpoint = createURL(endpointType, location);

@@ -1,9 +1,9 @@
 import { createFormattedDates } from '../utils';
-import { useDispatch } from 'react-redux';
 import { setFormattedDates } from '../store/appSlice';
+import { useAppDispatch } from '../store/store';
 
 export const useDates = () => {
   const dates = createFormattedDates();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   dispatch(setFormattedDates(dates));
 };

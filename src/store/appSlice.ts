@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { FormattedDate } from '../utils/createFormattedDates';
-import type { WeatherData } from '../hooks/types';
+import type { WeatherData } from '../types';
 
 interface AppState {
   searchFieldVisible: boolean;
@@ -59,22 +59,8 @@ const appSlice = createSlice({
   },
 });
 
-export const {
-  toggleIsCelsius,
-  toggleSearchFieldVisible,
-  setFormattedDates,
-  setCoordinates,
-  setLocationName,
-  setWeatherData,
-} = appSlice.actions;
+export const { toggleIsCelsius, toggleSearchFieldVisible, setFormattedDates, setCoordinates, setLocationName, setWeatherData } = appSlice.actions;
 
-export const {
-  selectIsCelsius,
-  selectSearchFieldVisible,
-  selectFormattedDates,
-  selectCoordinates,
-  selectLocationName,
-  selectWeatherData,
-} = appSlice.selectors;
+export const { selectIsCelsius, selectSearchFieldVisible, selectFormattedDates, selectCoordinates, selectLocationName, selectWeatherData } = appSlice.selectors;
 
 export default appSlice.reducer;

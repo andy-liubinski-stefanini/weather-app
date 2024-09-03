@@ -1,12 +1,26 @@
-import { TodayWeather } from '../hooks/types';
+import { TodayWeather } from '../types';
 import { baseQuery } from '../services';
 import { createURL } from './';
-import type { TodayWeatherResponse } from './types';
 import type { Coordinates, LocationName } from '../types';
 
-export const getTodayWeather = async (
-  location: LocationName | Coordinates
-): Promise<TodayWeather> => {
+export interface TodayWeatherData {
+  city_name: string;
+  country_code: string;
+  temp: number;
+  uv: number;
+  aqi: number;
+  rh: number;
+  wind_spd: number;
+  weather: {
+    description: string;
+    icon: string;
+  };
+}
+export interface TodayWeatherResponse {
+  data: TodayWeatherData[];
+}
+
+export const getTodayWeather = async (location: LocationName | Coordinates): Promise<TodayWeather> => {
   const endpointType = import.meta.env.VITE_CURRENT_ENDPOINT;
 
   const endpoint = createURL(endpointType, location);

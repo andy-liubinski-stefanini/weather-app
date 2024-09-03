@@ -1,7 +1,7 @@
 import { CitySection, InfoBox, ForecastBox } from './features/WeatherDisplay';
 import './index.scss';
-import { useDates } from './hooks';
-import { useGeolocation } from './hooks';
+import { useDates } from './functions';
+import { useGeolocation } from './functions';
 
 const App: React.FC = () => {
   useDates();

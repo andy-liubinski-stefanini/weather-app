@@ -1,10 +1,10 @@
 import { geolocate, handleGeolocationError } from '../utils';
-import { useDispatch } from 'react-redux';
 import { setCoordinates } from '../store/appSlice';
 import { setError, clearError } from '../store/errorSlice';
+import { useAppDispatch } from '../store/store';
 
 export const useGeolocation = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleGeolocate = async () => {
     try {
@@ -17,9 +17,7 @@ export const useGeolocation = () => {
       );
       dispatch(clearError());
     } catch (error: unknown) {
-      const errorMessage = handleGeolocationError(
-        error as GeolocationPositionError
-      );
+      const errorMessage = handleGeolocationError(error as GeolocationPositionError);
       dispatch(setError(errorMessage));
     }
   };

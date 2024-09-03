@@ -1,8 +1,8 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
+import js from '@eslint/js';
+import globals from 'globals';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import tseslint from 'typescript-eslint';
 
 export default tseslint.config({
   extends: [js.configs.recommended, ...tseslint.configs.recommended],
@@ -18,9 +18,19 @@ export default tseslint.config({
   },
   rules: {
     ...reactHooks.configs.recommended.rules,
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
+    'react/jsx-no-target-blank': 'off',
+    '@typescript-eslint/no-restricted-imports': [
+      2,
+      {
+        paths: [
+          {
+            name: 'react-redux',
+            importNames: ['useSelector', 'useDispatch'],
+            message: 'Please use pre-typed versions from `store.ts` instead.',
+          },
+        ],
+      },
     ],
+    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
   },
-})
+});

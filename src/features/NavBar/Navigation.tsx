@@ -1,25 +1,19 @@
 import { CiLocationOn, CiMap } from 'react-icons/ci';
 import './styles.scss';
-import { useSelector, useDispatch } from 'react-redux';
 import { setError } from '../../store/errorSlice';
-import {
-  toggleIsCelsius,
-  toggleSearchFieldVisible,
-  setWeatherData,
-  selectIsCelsius,
-  selectCoordinates,
-} from '../../store/appSlice';
+import { toggleIsCelsius, toggleSearchFieldVisible, setWeatherData, selectIsCelsius, selectCoordinates } from '../../store/appSlice';
 import { weatherService } from '../../functions';
 import type { Coordinates } from '../../types';
+import { useAppDispatch, useAppSelector } from '../../store/store';
 
 export const Navigation: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const handleUnitToggle = () => {
     dispatch(toggleIsCelsius());
   };
 
-  const isCelsius = useSelector(selectIsCelsius);
-  const coordinates: Coordinates = useSelector(selectCoordinates);
+  const isCelsius = useAppSelector(selectIsCelsius);
+  const coordinates: Coordinates = useAppSelector(selectCoordinates);
 
   const handleSearchButton = () => {
     dispatch(toggleSearchFieldVisible());

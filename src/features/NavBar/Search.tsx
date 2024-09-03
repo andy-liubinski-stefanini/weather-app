@@ -2,19 +2,15 @@ import { CiSearch } from 'react-icons/ci';
 import { SearchHistory } from '.';
 import { useEffect, useRef, useState } from 'react';
 import './styles.scss';
-import { useSelector, useDispatch } from 'react-redux';
 import { setError, clearError } from '../../store/errorSlice';
-import {
-  toggleSearchFieldVisible,
-  setWeatherData,
-  selectSearchFieldVisible,
-} from '../../store/appSlice';
+import { toggleSearchFieldVisible, setWeatherData, selectSearchFieldVisible } from '../../store/appSlice';
 import { weatherService } from '../../functions';
+import { useAppDispatch, useAppSelector } from '../../store/store';
 
 export const Search: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const searchFieldVisible = useSelector(selectSearchFieldVisible);
+  const searchFieldVisible = useAppSelector(selectSearchFieldVisible);
 
   const handleToggleSearchFieldVisibility = () => {
     dispatch(toggleSearchFieldVisible());
@@ -38,10 +34,7 @@ export const Search: React.FC = () => {
     evt.preventDefault();
     const inputValue = inputRef.current?.value.trim();
     if (inputValue) {
-      const newHistory = [
-        inputValue,
-        ...searchHistory.filter(place => place !== inputValue),
-      ].slice(0, 5);
+      const newHistory = [inputValue, ...searchHistory.filter(place => place !== inputValue)].slice(0, 5);
       setSearchHistory(newHistory);
       localStorage.setItem('searchHistory', JSON.stringify(newHistory));
       handleToggleSearchFieldVisibility();
@@ -81,13 +74,16 @@ export const Search: React.FC = () => {
           className="search-box--input"
         />
         <SearchHistory
-          handleGetCityWeather={place => handleGetCityWeather(place)}
+          handleGetCityWeather={handleGetCityWeather}
           isInputFocused={isInputFocused}
           searchHistory={searchHistory}
           setSearchHistory={setSearchHistory}
         />
       </div>
-      <button type="submit" className="search-box--button">
+      <button
+        type="submit"
+        className="search-box--button"
+      >
         <CiSearch />
       </button>
     </form>
