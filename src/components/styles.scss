@@ -1,4 +1,7 @@
-.history-item {
+@import '../variables';
+
+@media (max-aspect-ratio: 1/1) {
+  .history-item {
     cursor: pointer;
     display: flex;
     flex-direction: row;
@@ -6,19 +9,19 @@
     align-items: center;
     opacity: inherit;
     height: fit-content;
-  
+
     &:hover {
-      background-color: #e5e7eb; // hover:bg-slate-200
+      background-color: $historyItemBgColor;
     }
-  
+
     &--text {
-      color: #000000; // text-black
+      color: $blackColor;
       line-height: inherit;
 
       padding: 0;
       margin: 0;
     }
-  
+
     &--button {
       cursor: pointer;
 
@@ -27,67 +30,154 @@
       place-items: center;
       border: none;
       font-size: 2rem;
-      background-color: rgba($color: #000000, $alpha: 0);
+      background-color: rgba($color: $blackColor, $alpha: 0);
       &:hover {
-        background-color: #fee2e2; // hover:bg-red-100
+        background-color: $veryLightRedColor;
       }
     }
-  
+
     &--icon {
-      font-weight: 700; // font-bold
-      color: #991b1b; // text-red-800      
+      font-weight: 700;
+      color: $bloodRedColor;
     }
   }
-  
+
   .info-item {
-    padding-left: 1rem; // px-4
-    padding-right: 1rem; // px-4
+    padding-left: 1rem;
+    padding-right: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-grow: 1;
-  
-    // &--title {
-    //   // Should look good with inherited
-    // }
-  
+
     &--score {
-      font-size: 1.875rem; // text-3xl
-      opacity: 0.7; // opacity-70
+      font-size: 1.875rem;
+      opacity: 0.7;
       margin: 0;
     }
   }
-  
+
   .day-forecast {
-    width: 20%; // w-1/5
-    height: 100%; // h-full
+    width: 20%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-  
+
     &--day {
-      font-weight: 300; // font-light
-      font-size: 1.125rem; // text-lg
+      font-weight: 300;
+      font-size: 1.125rem;
     }
-  
+
     &--icon {
-      font-weight: 700; // font-bold
-      font-size: 4rem; // text-6xl
-  
+      font-weight: 700;
+      font-size: 4rem;
+
       & img {
-        width: 4rem; // w-16
-        height: 4rem; // h-16
+        width: 4rem;
+        height: 4rem;
       }
     }
-  
+
     &--description {
-      font-size: 0.875rem; // text-sm
+      font-size: 0.875rem;
     }
-  
+
     &--temps {
-      padding-bottom: 1rem; // pb-4
+      padding-bottom: 1rem;
     }
   }
-  
+}
+
+@media (min-aspect-ratio: 1/1) {
+  .history-item {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    opacity: inherit;
+    height: fit-content;
+
+    &:hover {
+      background-color: $historyItemBgColor;
+    }
+
+    &--text {
+      color: $blackColor;
+      line-height: inherit;
+
+      padding: 0;
+      margin: 0;
+    }
+
+    &--button {
+      cursor: pointer;
+
+      display: flex;
+      margin: 0;
+      place-items: center;
+      border: none;
+      font-size: 2rem;
+      background-color: rgba($color: $blackColor, $alpha: 0);
+      &:hover {
+        background-color: $veryLightRedColor;
+      }
+    }
+
+    &--icon {
+      font-weight: 700;
+      color: $bloodRedColor;
+    }
+  }
+
+  .info-item {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+
+    &--score {
+      font-size: 1.875rem;
+      opacity: 0.7;
+      margin: 0;
+    }
+  }
+
+  .day-forecast {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    &--day {
+      font-weight: 300;
+      font-size: 1.125rem;
+    }
+
+    &--icon {
+      font-weight: 700;
+      font-size: 4rem;
+
+      & img {
+        width: 4rem;
+        height: 4rem;
+      }
+    }
+
+    &--description {
+      font-size: 0.875rem;
+    }
+
+    &--temps {
+      padding-bottom: 1rem;
+    }
+  }
+}
