@@ -1,5 +1,6 @@
 @import '../variables';
 
+//narrow screen
 @media (max-aspect-ratio: 1/1) {
   .history-item {
     cursor: pointer;
@@ -59,16 +60,39 @@
   }
 
   .day-forecast {
-    width: 20%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    width: 100%;
+    height: fit-content;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
     align-items: center;
+    grid-template-columns: 2fr 3fr;
+    grid-template-rows: 1fr 2fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      'day-cell  minmax-cell'
+      'icon-cell weather-cell ';
+
+    &--weekday {
+      grid-area: day-cell;
+    }
+
+    &--icon {
+      grid-area: icon-cell;
+      height: 4rem;
+    }
+    &--description {
+      grid-area: weather-cell;
+    }
+    &--temps {
+      grid-area: minmax-cell;
+    }
 
     &--day {
       font-weight: 300;
       font-size: 1.125rem;
+      display: none;
     }
 
     &--icon {
@@ -82,15 +106,11 @@
     }
 
     &--description {
-      font-size: 0.875rem;
-    }
-
-    &--temps {
-      padding-bottom: 1rem;
+      font-size: 0.75rem;
     }
   }
 }
-
+// wide screen
 @media (min-aspect-ratio: 1/1) {
   .history-item {
     cursor: pointer;
@@ -160,6 +180,10 @@
     &--day {
       font-weight: 300;
       font-size: 1.125rem;
+    }
+
+    &--weekday {
+      display: none;
     }
 
     &--icon {

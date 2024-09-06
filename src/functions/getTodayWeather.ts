@@ -29,7 +29,7 @@ export const getTodayWeather = async (location: LocationName | Coordinates): Pro
   return {
     cityName: data.data[0].city_name,
     countryCode: data.data[0].country_code,
-    temperatureC: data.data[0].temp,
+    temperatureC: Math.round(data.data[0].temp),
     temperatureF: (9 / 5) * Number(data.data[0].temp) + 32,
     uvIndex: data.data[0].uv,
     airQuality: data.data[0].aqi,

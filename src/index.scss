@@ -11,10 +11,18 @@ body {
 }
 
 .day-forecast:not(:first-of-type) {
-  border-left: 1px solid $borderWhiteClearColor;
+  //narrow screen
+  @media (max-aspect-ratio: 1/1) {
+    border-top: 1px solid $borderWhiteClearColor;
+  }
+  //wide screen
+  @media (min-aspect-ratio: 1/1) {
+    border-left: 1px solid $borderWhiteClearColor;
+  }
 }
 
 .main {
+  min-height: 100vh;
   padding: 0;
   margin: 0;
   display: flex;
