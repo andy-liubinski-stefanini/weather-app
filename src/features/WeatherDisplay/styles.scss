@@ -12,11 +12,16 @@
 
   .info-box--informations-box {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     gap: 0;
     width: 100%;
+    grid-template-areas:
+      'icon temps temps'
+      'humidity air-quality uv-index';
+
     &--icon {
+      grid-area: icon;
       padding-left: 1rem;
       padding-right: 1rem;
       display: flex;
@@ -32,6 +37,7 @@
     }
 
     &--temps {
+      grid-area: temps;
       padding-left: 1rem;
       padding-right: 1rem;
       display: flex;
@@ -52,6 +58,7 @@
     justify-content: center;
     align-items: center;
     flex-grow: 1;
+    margin-top: 2rem;
     padding-bottom: 0.25rem;
     color: $whiteColor;
   }

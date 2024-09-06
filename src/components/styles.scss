@@ -44,16 +44,18 @@
   }
 
   .info-item {
-    padding-left: 1rem;
-    padding-right: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-grow: 1;
 
+    &--title {
+      font-size: 1rem;
+    }
+
     &--score {
-      font-size: 1.875rem;
+      font-size: 1.25rem;
       opacity: 0.7;
       margin: 0;
     }
