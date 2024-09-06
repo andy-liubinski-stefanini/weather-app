@@ -8,6 +8,7 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  background-color: $backgroundColor;
 }
 
 .day-forecast:not(:first-of-type) {
@@ -29,7 +30,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background-color: $backgroundColor;
 
   //narrow screen
   @media (max-aspect-ratio: 1/1) {
