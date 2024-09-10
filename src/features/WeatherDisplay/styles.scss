@@ -1,94 +1,190 @@
-/* InfoBox */
-.main--info-box {
+@import '../../variables';
+
+// narrow screen
+@media (max-aspect-ratio: 1/1) {
+  .main--info-box {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 66.666667%; /* w-2/3 */
-    height: 33.333333%; /* h-1/3 */
+    width: 80%;
   }
-  
+
   .info-box--informations-box {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* grid-cols-5 */
-    grid-template-rows: repeat(1, 1fr); /* grid-rows-1 */
-    gap: 0; /* gap-0 */
-    width: 100%; /* w-full */
-  
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0;
+    width: 100%;
+    grid-template-areas:
+      'icon temps temps'
+      'humidity air-quality uv-index';
+
     &--icon {
-      padding-left: 1rem; /* px-4 */
-      padding-right: 1rem; /* px-4 */
+      grid-area: icon;
+      padding-left: 1rem;
+      padding-right: 1rem;
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
       align-items: center;
       flex-grow: 1;
-      font-size: 4.5rem; /* text-7xl */
-  
+      font-size: 4.5rem;
       img {
-        width: 5rem; /* w-20 */
-        height: 5rem; /* h-20 */
+        width: 5rem;
+        height: 5rem;
       }
     }
-  
+
     &--temps {
-      padding-left: 1rem; /* px-4 */
-      padding-right: 1rem; /* px-4 */
+      grid-area: temps;
+      padding-left: 1rem;
+      padding-right: 1rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       flex-grow: 1;
-      font-size: 3rem; /* text-5xl */
-      font-weight: 200; /* font-thin */
-      opacity: 0.7; /* opacity-70 */
+      font-size: 3rem;
+      font-weight: 200;
+      opacity: 0.7;
     }
   }
-  
+
   .info-box--explanation {
-    width: 100%; /* w-full */
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     flex-grow: 1;
-    padding-bottom: 0.25rem; /* pb-1 */
-    color: white;
+    margin-top: 2rem;
+    padding-bottom: 0.25rem;
+    color: $whiteColor;
   }
-  
-  /* ForecastBox */
+
   .main--forecast {
-    width: 66.666667%; /* w-2/3 */
-    height: 33.333333%; /* h-1/3 */
+    width: 80%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
   }
-  
-  /* CitySection */
+
   .main--city {
-    width: 66.666667%; /* w-2/3 */
-    height: 33.333333%; /* h-1/3 */
-    position: relative; /* relative */
+    width: 80%;
   }
-  
+
   .city--display_box {
-    width: 100%; /* w-full */
-    height: 100%; /* h-full */
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
   }
-  
+
   .city_box--city_name {
-    font-size: 3rem; /* text-5xl */
-    transition: all 0.2s; /* transition-all duration-200 */
-    font-weight: 700; /* font-bold */
+    font-size: 2rem;
+    transition: all 0.2s;
+    font-weight: 500;
+    margin: 0;
   }
-  
+
   .city_box--date {
-    font-size: 1.875rem; /* text-3xl */
-    font-weight: 200; /* font-thin */
-    opacity: 0.7; /* opacity-70 */
+    font-size: 1rem;
+    font-weight: 200;
+    margin: 0;
+    opacity: 0.7;
   }
-  
+}
+
+// wide screen
+@media (min-aspect-ratio: 1/1) {
+  .main--info-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 66.666667%;
+    height: 33.333333%;
+  }
+
+  .info-box--informations-box {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 0;
+    width: 100%;
+    &--icon {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      flex-grow: 1;
+      font-size: 4.5rem;
+      img {
+        width: 5rem;
+        height: 5rem;
+      }
+    }
+
+    &--temps {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+      font-size: 3rem;
+      font-weight: 200;
+      opacity: 0.7;
+    }
+  }
+
+  .info-box--explanation {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    padding-bottom: 0.25rem;
+    color: $whiteColor;
+  }
+
+  .main--forecast {
+    width: 66.666667%;
+    height: 33.333333%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .main--city {
+    width: 66.666667%;
+    height: 33.333333%;
+    position: relative;
+  }
+
+  .city--display_box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .city_box--city_name {
+    font-size: 3rem;
+    transition: all 0.2s;
+    font-weight: 700;
+  }
+
+  .city_box--date {
+    font-size: 1.875rem;
+    font-weight: 200;
+    opacity: 0.7;
+  }
+}

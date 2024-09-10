@@ -2,6 +2,7 @@ import { Navigation, Search } from '../NavBar';
 import { useAppSelector } from '../../store/store';
 import './styles.scss';
 import { selectSearchFieldVisible, selectWeatherData, selectFormattedDates } from '../../store/appSlice';
+import { format } from 'date-fns';
 
 export const CitySection: React.FC = () => {
   const weatherData = useAppSelector(selectWeatherData);
@@ -10,7 +11,7 @@ export const CitySection: React.FC = () => {
 
   const weather = weatherData?.[0] ?? null;
   const cityCountry = weather ? `${weather.cityName}, ${weather.countryCode}` : 'Loading...';
-  const today = formattedDates.length > 0 ? `${formattedDates[0].formattedWeekday}, ${formattedDates[0].formattedDate}` : '';
+  const today = formattedDates.length > 0 ? `${format(new Date(), 'EEEE')}, ${formattedDates[0].formattedDate}` : '';
 
   return (
     <section className="main--city">

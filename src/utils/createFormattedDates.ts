@@ -7,10 +7,16 @@ export interface FormattedDate {
 
 const createOneDay = (days: number): FormattedDate => {
   const futureDay = add(new Date(), { days });
+  let formattedWeekday: string;
+  if (days === 0) {
+    formattedWeekday = 'Today';
+  } else {
+    formattedWeekday = format(futureDay, 'EEE');
+  }
 
   return {
     formattedDate: format(futureDay, 'dd MMMM, yyyy'),
-    formattedWeekday: format(futureDay, 'EEEE'),
+    formattedWeekday,
   };
 };
 

@@ -26,8 +26,8 @@ export const getFutureWeather = async (location: LocationName | Coordinates): Pr
   const data = response.data;
   return data.slice(0, 5).map(day => ({
     dateOfWeather: day.datetime,
-    maxTempC: day.max_temp,
-    minTempC: day.min_temp,
+    maxTempC: Math.round(day.max_temp),
+    minTempC: Math.round(day.min_temp),
     description: day.weather.description,
     icon: day.weather.icon,
   }));

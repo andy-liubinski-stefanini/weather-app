@@ -10,6 +10,7 @@ interface Day {
 
 interface FormattedDate {
   formattedDate: string;
+  formattedWeekday: string;
 }
 
 interface ForecastDayProps {
@@ -35,6 +36,7 @@ export const ForecastDay: React.FC<ForecastDayProps> = ({ day, formattedDate }) 
   return (
     <div className="forecast-box--day day-forecast">
       <div className="day-forecast--day">{day ? formattedDate.formattedDate : `Loading...`}</div>
+      <div className="day-forecast--weekday">{day ? formattedDate.formattedWeekday : `Loading...`}</div>
       <div className="day-forecast--icon icon">
         {iconLink && (
           <img

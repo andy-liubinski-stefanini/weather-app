@@ -32,17 +32,20 @@ export const Navigation: React.FC = () => {
     <nav className="city--navigation_box">
       <button
         onClick={handleGetLocalWeather}
+        title="Local weather"
         className="city--navigation_box--geolocate"
       >
         <CiLocationOn />
       </button>
       <button
+        title="Search a city"
         onClick={handleSearchButton}
         className="city--navigation_box--search"
       >
         <CiMap />
       </button>
       <button
+        title={isCelsius ? 'Show in fahrenheit' : 'Show in degrees centigrade'}
         onClick={handleUnitToggle}
         className="city--navigation_box--toggle_unit"
       >

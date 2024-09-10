@@ -1,5 +1,6 @@
+@import '../../variables';
+
 .error-message {
-    color: #ef4444; /* text-red-500 */
-    background-color: #f8fafc; /* bg-slate-50 */
-  }
-  
+  color: $errorRed;
+  background-color: $errorSlate;
+}
